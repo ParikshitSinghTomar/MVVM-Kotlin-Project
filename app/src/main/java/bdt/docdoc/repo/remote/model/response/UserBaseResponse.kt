@@ -10,16 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
 @JsonIgnoreProperties(ignoreUnknown = true)
 class BaseResponse{
 
-
-//    {
-//        "status": true,
-//        "code": 205,
-    //      "errors":"No Error",
-//        "message": "User found",
-//        "data": {
-//    }
-//    }
-
     @JsonProperty(value = "code")
     var code:Int=-1
 
