@@ -16,6 +16,9 @@ import bdt.docdoc.repo.local.sharedpref.SharedPrefHelper_Factory;
 import bdt.docdoc.repo.local.storage.IStorageHelper;
 import bdt.docdoc.repo.local.storage.StorageHelper_Factory;
 import bdt.docdoc.repo.remote.rest_api_helper.IRestAPIHelper;
+import bdt.docdoc.ui.dashboard.DashboardActivity;
+import bdt.docdoc.ui.dashboard.DashboardActivityModule;
+import bdt.docdoc.ui.dashboard.DashboardActivity_MembersInjector;
 import bdt.docdoc.ui.login.LoginActivity;
 import bdt.docdoc.ui.login.LoginActivityModule;
 import bdt.docdoc.ui.login.LoginActivity_MembersInjector;
@@ -47,6 +50,7 @@ import org.loop.example.di.module.AndroidModule_ProvideRetrofitFactory;
 import org.loop.example.di.module.AndroidModule_ProvideRetrofitServiceFactory;
 import org.loop.example.di.module.AndroidModule_ProvideSharedPrefHelperFactory;
 import org.loop.example.di.module.AndroidModule_ProvideStorageHelperFactory;
+import pari.docdoc.di.builder.ActivityBuilder_BindDashboardActivity;
 import pari.docdoc.di.builder.ActivityBuilder_BindLoginActivity;
 import pari.docdoc.di.builder.ActivityBuilder_BindRegistrationActivity;
 import pari.docdoc.di.builder.ActivityBuilder_BindSplashActivity;
@@ -66,6 +70,9 @@ public final class DaggerApplicationComponent implements ApplicationComponent {
 
   private Provider<ActivityBuilder_BindLoginActivity.LoginActivitySubcomponent.Builder>
       loginActivitySubcomponentBuilderProvider;
+
+  private Provider<ActivityBuilder_BindDashboardActivity.DashboardActivitySubcomponent.Builder>
+      dashboardActivitySubcomponentBuilderProvider;
 
   private Provider<LocationManager> provideLocationManagerProvider;
 
@@ -126,6 +133,14 @@ public final class DaggerApplicationComponent implements ApplicationComponent {
             return new LoginActivitySubcomponentBuilder();
           }
         };
+    this.dashboardActivitySubcomponentBuilderProvider =
+        new Provider<
+            ActivityBuilder_BindDashboardActivity.DashboardActivitySubcomponent.Builder>() {
+          @Override
+          public ActivityBuilder_BindDashboardActivity.DashboardActivitySubcomponent.Builder get() {
+            return new DashboardActivitySubcomponentBuilder();
+          }
+        };
     this.provideLocationManagerProvider =
         DoubleCheck.provider(
             AndroidModule_ProvideLocationManagerFactory.create(builder.androidModule));
@@ -181,12 +196,15 @@ public final class DaggerApplicationComponent implements ApplicationComponent {
         DispatchingAndroidInjector_Factory.newDispatchingAndroidInjector(
             MapBuilder
                 .<Class<? extends Activity>, Provider<AndroidInjector.Factory<? extends Activity>>>
-                    newMapBuilder(3)
+                    newMapBuilder(4)
                 .put(SplashActivity.class, (Provider) splashActivitySubcomponentBuilderProvider)
                 .put(
                     RegistrationActivity.class,
                     (Provider) registrationActivitySubcomponentBuilderProvider)
                 .put(LoginActivity.class, (Provider) loginActivitySubcomponentBuilderProvider)
+                .put(
+                    DashboardActivity.class,
+                    (Provider) dashboardActivitySubcomponentBuilderProvider)
                 .build()));
     MyApplication_MembersInjector.injectLocationManager(
         instance, provideLocationManagerProvider.get());
@@ -362,6 +380,59 @@ public final class DaggerApplicationComponent implements ApplicationComponent {
           instance,
           Preconditions.checkNotNull(
               loginActivityModule.provideRegistrationViewModel(
+                  DaggerApplicationComponent.this.provideDataManagerProvider.get()),
+              "Cannot return null from a non-@Nullable @Provides method"));
+      return instance;
+    }
+  }
+
+  private final class DashboardActivitySubcomponentBuilder
+      extends ActivityBuilder_BindDashboardActivity.DashboardActivitySubcomponent.Builder {
+    private DashboardActivityModule dashboardActivityModule;
+
+    private DashboardActivity seedInstance;
+
+    @Override
+    public ActivityBuilder_BindDashboardActivity.DashboardActivitySubcomponent build() {
+      if (dashboardActivityModule == null) {
+        this.dashboardActivityModule = new DashboardActivityModule();
+      }
+      if (seedInstance == null) {
+        throw new IllegalStateException(
+            DashboardActivity.class.getCanonicalName() + " must be set");
+      }
+      return new DashboardActivitySubcomponentImpl(this);
+    }
+
+    @Override
+    public void seedInstance(DashboardActivity arg0) {
+      this.seedInstance = Preconditions.checkNotNull(arg0);
+    }
+  }
+
+  private final class DashboardActivitySubcomponentImpl
+      implements ActivityBuilder_BindDashboardActivity.DashboardActivitySubcomponent {
+    private DashboardActivityModule dashboardActivityModule;
+
+    private DashboardActivitySubcomponentImpl(DashboardActivitySubcomponentBuilder builder) {
+      initialize(builder);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void initialize(final DashboardActivitySubcomponentBuilder builder) {
+      this.dashboardActivityModule = builder.dashboardActivityModule;
+    }
+
+    @Override
+    public void inject(DashboardActivity arg0) {
+      injectDashboardActivity(arg0);
+    }
+
+    private DashboardActivity injectDashboardActivity(DashboardActivity instance) {
+      DashboardActivity_MembersInjector.injectMDashboardViewModel(
+          instance,
+          Preconditions.checkNotNull(
+              dashboardActivityModule.provideDashboardViewModel(
                   DaggerApplicationComponent.this.provideDataManagerProvider.get()),
               "Cannot return null from a non-@Nullable @Provides method"));
       return instance;

@@ -50,27 +50,27 @@ INJECTED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.x
 	xmlns:android
 		ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:5:5-66
+ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:5:5-67
 	android:name
 		ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:5:22-64
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:6:5-80
+ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:6:5-81
 	android:name
 		ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:6:22-78
 uses-permission#android.permission.CAMERA
-ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:7:5-64
+ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:7:5-65
 	android:name
 		ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:7:22-62
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:8:5-78
+ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:8:5-79
 	android:name
 		ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:8:22-76
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:9:5-80
+ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:9:5-81
 	android:name
 		ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:9:22-78
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:10:5-78
+ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:10:5-79
 	android:name
 		ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:10:22-76
 application
@@ -139,6 +139,10 @@ activity#bdt.docdoc.ui.login.LoginActivity
 ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:29:9-60
 	android:name
 		ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:29:19-57
+activity#bdt.docdoc.ui.dashboard.DashboardActivity
+ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:30:9-77
+	android:name
+		ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:30:19-65
 uses-sdk
 INJECTED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml

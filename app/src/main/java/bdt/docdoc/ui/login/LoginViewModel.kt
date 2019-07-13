@@ -61,9 +61,9 @@ class LoginViewModel
 
 //            viewModelScope.launch(Dispatchers.Main){
 //                if(error.equals(EMPTY_STRING)&&userResponse.status){
-//                    (getNavigator() as ILoginNavigator).loginSuccessful(userResponse)
+//                    (getNavigator() as IDashboardNavigator).loginSuccessful(userResponse)
 //                }else{
-//                    (getNavigator() as ILoginNavigator).showError(error)
+//                    (getNavigator() as IDashboardNavigator).showError(error)
 //                }
 //
 //            }

@@ -16,7 +16,7 @@ import javax.inject.Inject
 /**
  * Created by user on 12/3/19.
  */
-class SplashActivity :  BaseActivity<SplashBinding, SplashViewModel>(), ISplashNavigator {
+class SplashActivity : BaseActivity<SplashBinding, SplashViewModel>(), ISplashNavigator {
     override fun showError(error: String) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -30,19 +30,19 @@ class SplashActivity :  BaseActivity<SplashBinding, SplashViewModel>(), ISplashN
     }
 
     @Inject
-    lateinit var mSplashViewModel:SplashViewModel
+    lateinit var mSplashViewModel: SplashViewModel
 
-    lateinit var mBinding:SplashBinding
+    lateinit var mBinding: SplashBinding
 
-    lateinit var context:Context
+    lateinit var context: Context
 
-    val TAG:String=SplashActivity::class.java.name
+    val TAG: String = SplashActivity::class.java.name
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        context=baseContext
-        mBinding=getViewDataBinding()!!
-        mBinding.viewModel=mSplashViewModel
+        context = baseContext
+        mBinding = getViewDataBinding()!!
+        mBinding.viewModel = mSplashViewModel
         mSplashViewModel.setNavigator(this)
     }
 
@@ -51,21 +51,24 @@ class SplashActivity :  BaseActivity<SplashBinding, SplashViewModel>(), ISplashN
         message()
     }
 
-    private fun message(){
+    private fun message() {
         object : CountDownTimer(2000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                Log.d(TAG,"Tick: "+millisUntilFinished.toString())
+                Log.d(TAG, "Tick: " + millisUntilFinished.toString())
                 mSplashViewModel.incrementCounter()
             }
+
             override fun onFinish() {
-                if(mSplashViewModel.isUserAuthentic()){
-                    startActivity(Intent(baseContext,RegistrationActivity::class.java))
-                }else{
-                    startActivity(Intent(baseContext,LoginActivity::class.java))
+                if (mSplashViewModel.isUserAuthentic()) {
+                    startActivity(RegistrationActivity.getStartIntent(context))
+                } else {
+                    startActivity(LoginActivity.getStartIntent(context))
                 }
+                finish()
             }
         }.start()
     }
+
     override fun getViewModel(): SplashViewModel {
         return mSplashViewModel
     }
@@ -75,10 +78,10 @@ class SplashActivity :  BaseActivity<SplashBinding, SplashViewModel>(), ISplashN
     }
 
     override fun getLayoutId(): Int {
-       return R.layout.splash
+        return R.layout.splash
     }
 
-    override fun executePendingBindings(){
+    override fun executePendingBindings() {
         mBinding.textViewCounter.setText(mSplashViewModel.counter.value.toString())
     }
 

@@ -1,6 +1,7 @@
 package bdt.docdoc.ui.registration
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import bdt.docdoc.BR
@@ -27,6 +28,12 @@ class RegistrationActivity :  BaseActivity<ActivityRegistrationBinding, Registra
 
     override fun executePendingBindings() {
 
+    }
+
+    companion object {
+        fun getStartIntent(context: Context):Intent{
+            return Intent(context,RegistrationActivity::class.java)
+        }
     }
 
     @Inject

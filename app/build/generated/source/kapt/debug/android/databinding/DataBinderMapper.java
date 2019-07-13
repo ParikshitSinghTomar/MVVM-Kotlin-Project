@@ -14,6 +14,8 @@ class DataBinderMapper  {
                     return bdt.docdoc.databinding.ActivityLoginBinding.bind(view, bindingComponent);
                 case bdt.docdoc.R.layout.splash:
                     return bdt.docdoc.databinding.SplashBinding.bind(view, bindingComponent);
+                case bdt.docdoc.R.layout.activity_dashboard:
+                    return bdt.docdoc.databinding.ActivityDashboardBinding.bind(view, bindingComponent);
         }
         return null;
     }
@@ -43,6 +45,12 @@ class DataBinderMapper  {
             case 312839581: {
                 if(tag.equals("layout/splash_0")) {
                     return bdt.docdoc.R.layout.splash;
+                }
+                break;
+            }
+            case -1854838310: {
+                if(tag.equals("layout/activity_dashboard_0")) {
+                    return bdt.docdoc.R.layout.activity_dashboard;
                 }
                 break;
             }

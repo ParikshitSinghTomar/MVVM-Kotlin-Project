@@ -8,6 +8,10 @@
         "source": "/opt/prsnl/android_workspace/DocDoc/app/src/main/res/layout/activity_registration.xml"
     },
     {
+        "merged": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_dashboard.xml",
+        "source": "/opt/prsnl/android_workspace/DocDoc/app/src/main/res/layout/activity_dashboard.xml"
+    },
+    {
         "merged": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_login.xml",
         "source": "/opt/prsnl/android_workspace/DocDoc/app/src/main/res/layout/activity_login.xml"
     }

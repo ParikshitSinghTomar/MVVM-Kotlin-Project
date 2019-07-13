@@ -1,5 +1,7 @@
 package pari.docdoc.di.builder
 
+import bdt.docdoc.ui.dashboard.DashboardActivity
+import bdt.docdoc.ui.dashboard.DashboardActivityModule
 import bdt.docdoc.ui.login.LoginActivity
 import bdt.docdoc.ui.login.LoginActivityModule
 import bdt.docdoc.ui.registration.RegistrationActivity
@@ -26,4 +28,7 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = arrayOf(LoginActivityModule::class))
     abstract fun bindLoginActivity(): LoginActivity
 
+
+    @ContributesAndroidInjector(modules = arrayOf(DashboardActivityModule::class))
+    abstract fun bindDashboardActivity(): DashboardActivity
 }

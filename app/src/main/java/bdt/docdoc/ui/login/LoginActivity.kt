@@ -1,6 +1,7 @@
 package bdt.docdoc.ui.login
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -14,6 +15,7 @@ import bdt.docdoc.common.BaseActivity
 import bdt.docdoc.common.Constants
 import bdt.docdoc.databinding.ActivityLoginBinding
 import bdt.docdoc.repo.remote.model.response.UserResponse
+import bdt.docdoc.ui.dashboard.DashboardActivity
 import javax.inject.Inject
 
 /**
@@ -32,6 +34,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), ILog
         showSuccessSnack(success)
     }
 
+
+    companion object {
+        fun getStartIntent(context: Context):Intent{
+            return Intent(context, LoginActivity::class.java)
+        }
+    }
 
     override fun onClick(v: View?) {
 
@@ -62,6 +70,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), ILog
     override fun loginSuccessful(userResponse: UserResponse) {
         val toast: Toast = Toast.makeText(context, "Login Successfully Done", Toast.LENGTH_SHORT)
         toast.show()
+        startActivity(DashboardActivity.getStartIntent(context))
+        finish()
     }
 
     override fun executePendingBindings() {
@@ -97,9 +107,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), ILog
             }
         }
 
-        if (!requiredPermission.isNullOrEmpty()) {
+        if (requiredPermission != null && requiredPermission.size > 0) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(requiredPermission!!.toTypedArray(), permissionResquestCode)
+                requestPermissions(requiredPermission.toTypedArray(), permissionResquestCode)
             }
         }
     }
@@ -118,10 +128,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), ILog
 
                 if (allPermissionGranted) {
                     showSuccessSnack("Great!, Now you can enjoy application.")
-                    mBinding.btnLogin.isEnabled=true
+                    mBinding.btnLogin.isEnabled = true
                     mBinding.btnLogin.setBackgroundColor(ContextCompat.getColor(this, R.color.abc_search_url_text_normal))
-                }else{
-                    mBinding.btnLogin.isEnabled=false
+                } else {
+                    mBinding.btnLogin.isEnabled = false
                     mBinding.btnLogin.setBackgroundColor(ContextCompat.getColor(this, R.color.primary_text_disabled_material_light))
                 }
             }

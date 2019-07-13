@@ -34,7 +34,8 @@
         </activity>
         <activity android:name="bdt.docdoc.ui.registration.RegistrationActivity" />
         <activity android:name="bdt.docdoc.ui.login.LoginActivity" />
-        <!-- <activity android:name=".ui.login.LoginActivity" /> -->
+        <activity android:name="bdt.docdoc.ui.dashboard.DashboardActivity" />
+
         <meta-data
             android:name="android.support.VERSION"
             android:value="26.1.0" />
