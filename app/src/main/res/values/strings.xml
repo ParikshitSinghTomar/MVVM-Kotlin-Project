@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DocDoc</string>
+    <string name="login">Login</string>
+    <string name="forgotpassword">ForgotPassword</string>
+    <string name="wrong_email_format">Please enter a valid email address.</string>
+    <string name="blank_username">Please enter username, email or mobile number.</string>
+    <string name="blank_password">Please provide password</string>
+</resources>

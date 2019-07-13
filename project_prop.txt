@@ -1,0 +1,79 @@
+1. Kotlin
+    Dependency in Gradle- Done
+    Use - Pending
+
+2. Dagger 2
+    Dependency in Gradle - Done
+    Use - Pending
+
+3. Retrofit - Network Communication
+    Dependency in Gradle - Done
+    Use- Pending
+
+4. Room - Database ORM
+    Dependency in Gradle - Done
+    Use - Pending
+
+5. RxJava - MultiThreading and Asynchronouse
+    Dependency in Gradle - Done
+       Use- Pending
+
+6. MVVM -  For Application Design Pattern
+    Dependency in Gradle - Done
+    Use - Pending
+
+7. Clean Architecture - MVVM with clean architecture so that whenever we want can add and remove frameworks
+    Dependency in Gradle - No Dependency for Clean Architecture
+    Use - Pending
+
+8. Crashlytics  - Create your own crashlytics
+    Dependency in Gradle - Pending
+    Use - Pending
+
+
+9. Live Data - For application UI updates
+    Dependency in Gradle - Done
+    Use - Pending
+
+
+10. Arch Life Cycle - to make your application life cycle aware
+    Dependency in Gradle - Done
+    Use  - Pending
+
+
+11. Application Flavouring(Demo,Debug,Release) - Make always different type of flavors for different uses
+    Dependency in Gradle - Done
+    Use - Pending
+
+
+12. Base Activity - Necessory for each and every project to handle common method which also depend on life cycle of activity
+    Use-Pending
+
+13. Base Fragment - Necessory for each and every project to handle all common method which also depend on life cycle of Fragment
+       Use-Pending
+
+14. Util File (Network, Message Manager, Dialog Utils, Time Utils, Animation Utils, CustomTextViewUtils, FontUtils)
+    Use-Pending
+
+15. Multi-Lingual Support - From Server I can load my all language. Language selection completely depend on user interest and language can pushed from server
+    Use-Pending
+
+
+16. Dynamic Module - Make your application dynamic module featured. so that if I want to push any feature instantly can do it easily.
+    Dependency  -Pending
+    Use-Pending
+
+17. App Logger - to make logging easy and single module controlable.
+    Use-Pending
+
+18. Pro guard Rules -  necessory for all projects
+    Use-Pending
+
+
+19. JUnit - With module development create JUnit specific for Functionality not for UI. For UI use espress or monkey runner
+    Dependency - Done
+    Use - Pending
+
+20. All Dependencies in separate file -We have lots of dependencies in app gradle but we can make it more moduler by putting all dependencies in
+ separate file such dependencies_version.gradle and put it in project level directory.
+ Use - Pending
