@@ -1,7 +1,9 @@
 package bdt.docdoc.repo.remote.rest_api_helper
 
+import bdt.docdoc.repo.remote.model.request.UserRegistrationRequest
 import bdt.docdoc.repo.remote.model.request.UserRequest
-import bdt.docdoc.repo.remote.model.response.BaseResponse
+import bdt.docdoc.repo.remote.model.response.UserBaseResponse
+import bdt.docdoc.repo.remote.model.response.UserRegistrationResponse
 
 /**
  * Created by user on 12/3/19.
@@ -9,5 +11,7 @@ import bdt.docdoc.repo.remote.model.response.BaseResponse
 interface IRestAPIHelper {
 
 
-    fun login(userRequest: UserRequest):BaseResponse
+    fun login(userRequest: UserRequest):UserBaseResponse
+
+    fun register(request: UserRegistrationRequest): UserRegistrationResponse
 }

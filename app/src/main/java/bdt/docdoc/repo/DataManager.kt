@@ -4,8 +4,10 @@ import bdt.docdoc.repo.local.room_db.IRoomDBHelper
 import bdt.docdoc.repo.local.room_db.entity.User
 import bdt.docdoc.repo.local.sharedpref.ISharedPrefHelper
 import bdt.docdoc.repo.local.storage.IStorageHelper
+import bdt.docdoc.repo.remote.model.request.UserRegistrationRequest
 import bdt.docdoc.repo.remote.model.request.UserRequest
-import bdt.docdoc.repo.remote.model.response.BaseResponse
+import bdt.docdoc.repo.remote.model.response.UserBaseResponse
+import bdt.docdoc.repo.remote.model.response.UserRegistrationResponse
 import bdt.docdoc.repo.remote.rest_api_helper.IRestAPIHelper
 import dagger.Module
 import javax.inject.Inject
@@ -38,7 +40,7 @@ class DataManager : IDataManager {
       return iSharedPrefHelper.isUserAuthentic()
     }
 
-    override fun login(userRequest: UserRequest): BaseResponse {
+    override fun login(userRequest: UserRequest): UserBaseResponse {
         return iRestAPIHelper.login(userRequest)
     }
 
@@ -49,5 +51,10 @@ class DataManager : IDataManager {
     override fun findUser(id: Int): Int {
         return iRoomDBHelper.findUser(id)
     }
+
+    override fun register(request: UserRegistrationRequest): UserRegistrationResponse {
+       return iRestAPIHelper.register(request)
+    }
+
 
 }

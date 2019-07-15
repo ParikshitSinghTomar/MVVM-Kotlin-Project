@@ -6,4 +6,15 @@
     <string name="wrong_email_format">Please enter a valid email address.</string>
     <string name="blank_username">Please enter username, email or mobile number.</string>
     <string name="blank_password">Please provide password</string>
+    <string name="signup"><html><body><u>SignUp</u></body></html></string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="not_null_firstname">First Name can not be empty.</string>
+    <string name="not_null_lastname">Lastname can not be empty.</string>
+    <string name="not_null_email">Please provide valid email id.</string>
+    <string name="not_null_mobile_no">Please provide valid mobile number.</string>
 </resources>

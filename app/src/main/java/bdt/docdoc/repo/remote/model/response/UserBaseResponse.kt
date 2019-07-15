@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * Created by parikshit on 12/7/19.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-class BaseResponse{
+class UserBaseResponse{
 
     @JsonProperty(value = "code")
     var code:Int=-1
@@ -26,7 +26,7 @@ class BaseResponse{
     var errors:String=Constants.EMPTY_STRING
 
     override fun toString(): String {
-        return "BaseResponse(code=$code, status=$status, message='$message', data=$data, errors='$errors')"
+        return "UserBaseResponse(code=$code, status=$status, message='$message', data=$data, errors='$errors')"
     }
 
 

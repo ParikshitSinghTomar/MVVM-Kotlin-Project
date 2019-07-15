@@ -1,7 +1,9 @@
 package `in`.pari.docdoc.repo.remote.rest_api_helper.retrofit_helper
 
+import bdt.docdoc.repo.remote.model.request.UserRegistrationRequest
 import bdt.docdoc.repo.remote.model.request.UserRequest
-import bdt.docdoc.repo.remote.model.response.BaseResponse
+import bdt.docdoc.repo.remote.model.response.UserBaseResponse
+import bdt.docdoc.repo.remote.model.response.UserRegistrationResponse
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -13,5 +15,9 @@ import retrofit2.http.Url
 interface RetrofitService {
 
     @POST
-    fun login(@Url url:String,@Body userRequest: UserRequest):Single<BaseResponse>
+    fun login(@Url url:String,@Body userRequest: UserRequest):Single<UserBaseResponse>
+
+    @POST
+    fun register(@Url url:String,@Body request: UserRegistrationRequest):Single<UserRegistrationResponse>
+
 }

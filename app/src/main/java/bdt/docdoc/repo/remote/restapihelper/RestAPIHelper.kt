@@ -3,8 +3,10 @@ package `in`.pari.docdoc.repo.remote.rest_api_helper
 import `in`.pari.docdoc.repo.remote.rest_api_helper.retrofit_helper.RetrofitService
 import android.util.Log
 import bdt.docdoc.BuildConfig
+import bdt.docdoc.repo.remote.model.request.UserRegistrationRequest
 import bdt.docdoc.repo.remote.model.request.UserRequest
-import bdt.docdoc.repo.remote.model.response.BaseResponse
+import bdt.docdoc.repo.remote.model.response.UserBaseResponse
+import bdt.docdoc.repo.remote.model.response.UserRegistrationResponse
 import bdt.docdoc.repo.remote.rest_api_helper.IRestAPIHelper
 import java.io.IOException
 import javax.inject.Inject
@@ -22,7 +24,7 @@ class RestAPIHelper : IRestAPIHelper {
     @Inject
     constructor()
 
-    override fun login(userRequest: UserRequest): BaseResponse {
+    override fun login(userRequest: UserRequest): UserBaseResponse {
         val url = BuildConfig.BASE_URL + "login"
         var error = "NoError"
         try {
@@ -33,10 +35,28 @@ class RestAPIHelper : IRestAPIHelper {
             error = e.message!!
             e.printStackTrace()
         }
-        var userResponse = BaseResponse()
+        var userResponse = UserBaseResponse()
         userResponse.errors = error
         return userResponse
 
     }
+
+    override fun register(request: UserRegistrationRequest): UserRegistrationResponse {
+        val url = BuildConfig.BASE_URL + "register"
+        var error = "NoError"
+        try {
+            var response = retrofitService.register(url, request).blockingGet()
+            Log.e(TAG, response.toString())
+            return response
+        } catch (e: IOException) {
+            error = e.message!!
+            e.printStackTrace()
+        }
+        var userRegistrationResponse = UserRegistrationResponse()
+        userRegistrationResponse.errors = error
+        return userRegistrationResponse
+
+    }
+
 
 }

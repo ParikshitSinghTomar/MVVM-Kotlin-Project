@@ -20,6 +20,8 @@ public class ActivityLoginBinding extends android.databinding.ViewDataBinding  {
         sViewsWithIds.put(R.id.edtPassword, 3);
         sViewsWithIds.put(R.id.btnLogin, 4);
         sViewsWithIds.put(R.id.txtForgotPassword, 5);
+        sViewsWithIds.put(R.id.textView2, 6);
+        sViewsWithIds.put(R.id.textViewSignUp, 7);
     }
     // views
     @NonNull
@@ -33,6 +35,10 @@ public class ActivityLoginBinding extends android.databinding.ViewDataBinding  {
     @NonNull
     public final android.widget.TextView textView;
     @NonNull
+    public final android.widget.TextView textView2;
+    @NonNull
+    public final android.widget.TextView textViewSignUp;
+    @NonNull
     public final android.widget.TextView txtForgotPassword;
     // variables
     @Nullable
@@ -43,13 +49,15 @@ public class ActivityLoginBinding extends android.databinding.ViewDataBinding  {
 
     public ActivityLoginBinding(@NonNull android.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
         super(bindingComponent, root, 0);
-        final Object[] bindings = mapBindings(bindingComponent, root, 6, sIncludes, sViewsWithIds);
+        final Object[] bindings = mapBindings(bindingComponent, root, 8, sIncludes, sViewsWithIds);
         this.btnLogin = (android.widget.Button) bindings[4];
         this.edtPassword = (android.widget.EditText) bindings[3];
         this.edtUsername = (android.widget.EditText) bindings[2];
         this.mboundView0 = (android.support.constraint.ConstraintLayout) bindings[0];
         this.mboundView0.setTag(null);
         this.textView = (android.widget.TextView) bindings[1];
+        this.textView2 = (android.widget.TextView) bindings[6];
+        this.textViewSignUp = (android.widget.TextView) bindings[7];
         this.txtForgotPassword = (android.widget.TextView) bindings[5];
         setRootTag(root);
         // listeners

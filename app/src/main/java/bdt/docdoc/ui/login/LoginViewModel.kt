@@ -8,8 +8,7 @@ import bdt.docdoc.common.Constants.Companion.EMPTY_STRING
 import bdt.docdoc.repo.IDataManager
 import bdt.docdoc.repo.local.room_db.entity.User
 import bdt.docdoc.repo.remote.model.request.UserRequest
-import bdt.docdoc.repo.remote.model.response.BaseResponse
-import bdt.docdoc.repo.remote.model.response.UserResponse
+import bdt.docdoc.repo.remote.model.response.UserBaseResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,8 +23,8 @@ class LoginViewModel
     private val TAG: String = LoginViewModel::class.simpleName.toString()
 
     private var iDataManager: IDataManager
-    private var userResponse = UserResponse()
-    private var baseResponse = BaseResponse()
+    private var baseResponse = UserBaseResponse()
+
 
     @Inject constructor(iDataManager: IDataManager) : super(iDataManager) {
         super.BaseViewModel(iDataManager)
@@ -59,23 +58,14 @@ class LoginViewModel
                 (getNavigator() as ILoginNavigator).showError(error)
             }
 
-//            viewModelScope.launch(Dispatchers.Main){
-//                if(error.equals(EMPTY_STRING)&&userResponse.status){
-//                    (getNavigator() as IDashboardNavigator).loginSuccessful(userResponse)
-//                }else{
-//                    (getNavigator() as IDashboardNavigator).showError(error)
-//                }
-//
-//            }
         }
 
     }
 
-    private fun saveUser(baseResponse: BaseResponse) {
+    private fun saveUser(userBaseResponse: UserBaseResponse) {
 
-
-        Log.e(TAG, baseResponse.toString())
-        var data = baseResponse.data
+        Log.e(TAG, userBaseResponse.toString())
+        var data = userBaseResponse.data
         var user = User(data.id, data.firstName,
                 data.lastName, data.email,
                 data.password, data.primaryPhoneNo,
@@ -87,10 +77,10 @@ class LoginViewModel
             Log.e(TAG, data.toString())
         }
         viewModelScope.launch(Dispatchers.Main) {
-            if (baseResponse.errors.equals(EMPTY_STRING) && baseResponse.status) {
-                (getNavigator() as ILoginNavigator).loginSuccessful(baseResponse.data)
+            if (userBaseResponse.errors.equals(EMPTY_STRING) && userBaseResponse.status) {
+                (getNavigator() as ILoginNavigator).loginSuccessful(userBaseResponse.data)
             } else {
-                (getNavigator() as ILoginNavigator).showError(baseResponse.errors)
+                (getNavigator() as ILoginNavigator).showError(userBaseResponse.errors)
             }
         }
 

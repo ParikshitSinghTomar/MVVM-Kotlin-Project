@@ -16,6 +16,7 @@ import bdt.docdoc.common.Constants
 import bdt.docdoc.databinding.ActivityLoginBinding
 import bdt.docdoc.repo.remote.model.response.UserResponse
 import bdt.docdoc.ui.dashboard.DashboardActivity
+import bdt.docdoc.ui.registration.RegistrationActivity
 import javax.inject.Inject
 
 /**
@@ -47,8 +48,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), ILog
             mBinding.btnLogin.id -> {
                 validateLoginFields()
             }
+            mBinding.textViewSignUp.id -> {
+                startActivity(RegistrationActivity.getStartIntent(context))
+            }
         }
-
     }
 
     private fun validateLoginFields() {
@@ -93,7 +96,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), ILog
         mBinding.viewModel = mLoginViewModel
         mLoginViewModel.setNavigator(this)
         mBinding.btnLogin.setOnClickListener(this)
-
+        mBinding.textViewSignUp.setOnClickListener(this)
         permissionChecks()
     }
 
