@@ -29,7 +29,7 @@ public class ActivityRegistrationBinding extends android.databinding.ViewDataBin
     @NonNull
     public final android.widget.EditText editTextMobileNo;
     @NonNull
-    private final android.support.constraint.ConstraintLayout mboundView0;
+    private final android.widget.ScrollView mboundView0;
     @NonNull
     public final android.widget.TextView textView3;
     // variables
@@ -54,7 +54,7 @@ public class ActivityRegistrationBinding extends android.databinding.ViewDataBin
         this.editTextLastName.setTag(null);
         this.editTextMobileNo = (android.widget.EditText) bindings[3];
         this.editTextMobileNo.setTag(null);
-        this.mboundView0 = (android.support.constraint.ConstraintLayout) bindings[0];
+        this.mboundView0 = (android.widget.ScrollView) bindings[0];
         this.mboundView0.setTag(null);
         this.textView3 = (android.widget.TextView) bindings[6];
         setRootTag(root);

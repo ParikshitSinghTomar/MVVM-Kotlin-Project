@@ -7,14 +7,17 @@ import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import bdt.docdoc.BR
 import bdt.docdoc.R
 import bdt.docdoc.common.BaseActivity
 import bdt.docdoc.databinding.ActivityDashboardBinding
+import bdt.docdoc.repo.local.roomdb.entity.Patient
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.app_bar_dashboard.*
+import kotlinx.android.synthetic.main.content_dashboard.*
 import javax.inject.Inject
 
 /**
@@ -22,10 +25,11 @@ import javax.inject.Inject
  */
 class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewModel>(), IDashboardNavigator, NavigationView.OnNavigationItemSelectedListener {
 
+
     companion object {
 
         fun getStartIntent(context: Context): Intent {
-            return Intent(context,DashboardActivity::class.java)
+            return Intent(context, DashboardActivity::class.java)
         }
 
     }
@@ -38,7 +42,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        context=baseContext
         mBinding = getViewDataBinding()!!
         mBinding.viewModel = mDashboardViewModel
         mDashboardViewModel.setNavigator(this)
@@ -56,6 +60,8 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        mDashboardViewModel.initPatientView();
     }
 
     override fun getViewModel(): DashboardViewModel {
@@ -69,7 +75,6 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
     override fun getLayoutId(): Int {
         return R.layout.activity_dashboard
     }
-
 
 
     override fun onBackPressed() {
@@ -139,5 +144,10 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
 
     }
 
+    override fun showPatientList(patientEntityList: ArrayList<Patient>) {
+        var adapter = PatientAdapter(context, patientEntityList)
+        recyclerViewPatients.layoutManager == LinearLayoutManager(context)
+        recyclerViewPatients.adapter = adapter
+    }
 
 }

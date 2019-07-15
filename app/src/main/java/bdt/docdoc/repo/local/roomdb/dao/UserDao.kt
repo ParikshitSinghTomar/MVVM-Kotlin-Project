@@ -12,9 +12,12 @@ import bdt.docdoc.repo.local.room_db.entity.User
 interface UserDao {
 
     @Insert
-    fun insert(user:User)
+    fun insert(user: User)
 
     @Query("SELECT COUNT(*) FROM User where id=:id")
-    fun findUser(id:Int):Int
+    fun findUser(id: Int): Int
+
+    @Query("SELECT * FROM User")
+    fun findUser2(): List<User>
 
 }

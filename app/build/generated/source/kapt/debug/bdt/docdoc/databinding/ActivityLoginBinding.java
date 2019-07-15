@@ -31,7 +31,7 @@ public class ActivityLoginBinding extends android.databinding.ViewDataBinding  {
     @NonNull
     public final android.widget.EditText edtUsername;
     @NonNull
-    private final android.support.constraint.ConstraintLayout mboundView0;
+    private final android.widget.ScrollView mboundView0;
     @NonNull
     public final android.widget.TextView textView;
     @NonNull
@@ -53,7 +53,7 @@ public class ActivityLoginBinding extends android.databinding.ViewDataBinding  {
         this.btnLogin = (android.widget.Button) bindings[4];
         this.edtPassword = (android.widget.EditText) bindings[3];
         this.edtUsername = (android.widget.EditText) bindings[2];
-        this.mboundView0 = (android.support.constraint.ConstraintLayout) bindings[0];
+        this.mboundView0 = (android.widget.ScrollView) bindings[0];
         this.mboundView0.setTag(null);
         this.textView = (android.widget.TextView) bindings[1];
         this.textView2 = (android.widget.TextView) bindings[6];

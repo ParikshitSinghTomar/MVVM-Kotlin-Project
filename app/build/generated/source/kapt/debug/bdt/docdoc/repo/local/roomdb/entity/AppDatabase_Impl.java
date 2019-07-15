@@ -14,6 +14,8 @@ import android.arch.persistence.room.util.TableInfo.ForeignKey;
 import android.arch.persistence.room.util.TableInfo.Index;
 import bdt.docdoc.repo.local.room_db.dao.UserDao;
 import bdt.docdoc.repo.local.room_db.dao.UserDao_Impl;
+import bdt.docdoc.repo.local.roomdb.dao.PatientDao;
+import bdt.docdoc.repo.local.roomdb.dao.PatientDao_Impl;
 import java.lang.IllegalStateException;
 import java.lang.Override;
 import java.lang.String;
@@ -27,19 +29,23 @@ import javax.annotation.Generated;
 public class AppDatabase_Impl extends AppDatabase {
   private volatile UserDao _userDao;
 
+  private volatile PatientDao _patientDao;
+
   @Override
   protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration configuration) {
     final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(1) {
       @Override
       public void createAllTables(SupportSQLiteDatabase _db) {
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `user` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `firstname` TEXT NOT NULL, `lastname` TEXT NOT NULL, `email` TEXT NOT NULL, `password` TEXT NOT NULL, `secondryPhoneNo` TEXT NOT NULL, `primaryPhoneNo` TEXT NOT NULL)");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `user` (`id` INTEGER NOT NULL, `firstname` TEXT NOT NULL, `lastname` TEXT NOT NULL, `email` TEXT NOT NULL, `password` TEXT NOT NULL, `secondryPhoneNo` TEXT NOT NULL, `primaryPhoneNo` TEXT NOT NULL, PRIMARY KEY(`id`))");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `patient` (`visit_id` INTEGER NOT NULL, `patient_id` INTEGER NOT NULL, `name` TEXT NOT NULL, `address` TEXT NOT NULL, `email` TEXT NOT NULL, `age` INTEGER NOT NULL, `mobileNo` TEXT NOT NULL, `visit_count` INTEGER NOT NULL, `visit_done` INTEGER NOT NULL, PRIMARY KEY(`visit_id`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a5b5440bb447fd423209271d4a6967e9\")");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"70bd955501f672f5232c8afeb9da8b54\")");
       }
 
       @Override
       public void dropAllTables(SupportSQLiteDatabase _db) {
         _db.execSQL("DROP TABLE IF EXISTS `user`");
+        _db.execSQL("DROP TABLE IF EXISTS `patient`");
       }
 
       @Override
@@ -81,8 +87,27 @@ public class AppDatabase_Impl extends AppDatabase {
                   + " Expected:\n" + _infoUser + "\n"
                   + " Found:\n" + _existingUser);
         }
+        final HashMap<String, TableInfo.Column> _columnsPatient = new HashMap<String, TableInfo.Column>(9);
+        _columnsPatient.put("visit_id", new TableInfo.Column("visit_id", "INTEGER", true, 1));
+        _columnsPatient.put("patient_id", new TableInfo.Column("patient_id", "INTEGER", true, 0));
+        _columnsPatient.put("name", new TableInfo.Column("name", "TEXT", true, 0));
+        _columnsPatient.put("address", new TableInfo.Column("address", "TEXT", true, 0));
+        _columnsPatient.put("email", new TableInfo.Column("email", "TEXT", true, 0));
+        _columnsPatient.put("age", new TableInfo.Column("age", "INTEGER", true, 0));
+        _columnsPatient.put("mobileNo", new TableInfo.Column("mobileNo", "TEXT", true, 0));
+        _columnsPatient.put("visit_count", new TableInfo.Column("visit_count", "INTEGER", true, 0));
+        _columnsPatient.put("visit_done", new TableInfo.Column("visit_done", "INTEGER", true, 0));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysPatient = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesPatient = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoPatient = new TableInfo("patient", _columnsPatient, _foreignKeysPatient, _indicesPatient);
+        final TableInfo _existingPatient = TableInfo.read(_db, "patient");
+        if (! _infoPatient.equals(_existingPatient)) {
+          throw new IllegalStateException("Migration didn't properly handle patient(bdt.docdoc.repo.local.roomdb.entity.Patient).\n"
+                  + " Expected:\n" + _infoPatient + "\n"
+                  + " Found:\n" + _existingPatient);
+        }
       }
-    }, "a5b5440bb447fd423209271d4a6967e9", "38a98dffbaef21a1c52774f4456965cf");
+    }, "70bd955501f672f5232c8afeb9da8b54", "a08bb8c7b616a05015e768d22dbb068f");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)
@@ -93,7 +118,7 @@ public class AppDatabase_Impl extends AppDatabase {
 
   @Override
   protected InvalidationTracker createInvalidationTracker() {
-    return new InvalidationTracker(this, "user");
+    return new InvalidationTracker(this, "user","patient");
   }
 
   @Override
@@ -103,6 +128,7 @@ public class AppDatabase_Impl extends AppDatabase {
     try {
       super.beginTransaction();
       _db.execSQL("DELETE FROM `user`");
+      _db.execSQL("DELETE FROM `patient`");
       super.setTransactionSuccessful();
     } finally {
       super.endTransaction();
@@ -123,6 +149,20 @@ public class AppDatabase_Impl extends AppDatabase {
           _userDao = new UserDao_Impl(this);
         }
         return _userDao;
+      }
+    }
+  }
+
+  @Override
+  public PatientDao getPatientDao() {
+    if (_patientDao != null) {
+      return _patientDao;
+    } else {
+      synchronized(this) {
+        if(_patientDao == null) {
+          _patientDao = new PatientDao_Impl(this);
+        }
+        return _patientDao;
       }
     }
   }

@@ -2,10 +2,13 @@ package bdt.docdoc.repo
 
 import bdt.docdoc.repo.local.room_db.IRoomDBHelper
 import bdt.docdoc.repo.local.room_db.entity.User
+import bdt.docdoc.repo.local.roomdb.entity.Patient
 import bdt.docdoc.repo.local.sharedpref.ISharedPrefHelper
 import bdt.docdoc.repo.local.storage.IStorageHelper
+import bdt.docdoc.repo.remote.model.request.PatientListRequest
 import bdt.docdoc.repo.remote.model.request.UserRegistrationRequest
 import bdt.docdoc.repo.remote.model.request.UserRequest
+import bdt.docdoc.repo.remote.model.response.PatientListResponse
 import bdt.docdoc.repo.remote.model.response.UserBaseResponse
 import bdt.docdoc.repo.remote.model.response.UserRegistrationResponse
 import bdt.docdoc.repo.remote.rest_api_helper.IRestAPIHelper
@@ -17,6 +20,7 @@ import javax.inject.Inject
  */
 @Module
 class DataManager : IDataManager {
+
 
     var iRoomDBHelper: IRoomDBHelper
     var iStorageHelper: IStorageHelper
@@ -37,7 +41,7 @@ class DataManager : IDataManager {
     }
 
     override fun isUserAuthentic(): Boolean {
-      return iSharedPrefHelper.isUserAuthentic()
+        return iSharedPrefHelper.isUserAuthentic()
     }
 
     override fun login(userRequest: UserRequest): UserBaseResponse {
@@ -53,8 +57,19 @@ class DataManager : IDataManager {
     }
 
     override fun register(request: UserRegistrationRequest): UserRegistrationResponse {
-       return iRestAPIHelper.register(request)
+        return iRestAPIHelper.register(request)
     }
 
+    override fun getCurrentUser(): User {
+        return iRoomDBHelper.getCurrentUser()
+    }
+
+    override fun patientService(request: PatientListRequest): PatientListResponse {
+        return iRestAPIHelper.patientService(request)
+    }
+
+    override fun savePatient(patientEntityList: List<Patient>) {
+        iRoomDBHelper.savePatient(patientEntityList)
+    }
 
 }

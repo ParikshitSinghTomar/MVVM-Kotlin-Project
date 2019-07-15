@@ -1,0 +1,62 @@
+{
+  "status": true,
+  "code": 205,
+  "message": "User found",
+  "data": [
+    {
+      "visit_id": 1,
+      "patient_id": 1,
+      "name": "Alok",
+      "address": "Sector 15, Gurgaon",
+      "email": "alok.kr@gmail.com",
+      "age": 27,
+      "mobileNo": "9927286208",
+      "visit_count": 7,
+      "visit_done": false
+    },
+    {
+      "visit_id": 2,
+      "patient_id": 2,
+      "name": "Parveen",
+      "address": "Sector 15, Gurgaon",
+      "email": "alok.kr@gmail.com",
+      "age": 27,
+      "mobileNo": "9927286208",
+      "visit_count": 7,
+      "visit_done": false
+    },
+    {
+      "visit_id": 3,
+      "patient_id": 3,
+      "name": "Sandeep",
+      "address": "Sector 15, Gurgaon",
+      "email": "alok.kr@gmail.com",
+      "age": 27,
+      "mobileNo": "9927286208",
+      "visit_count": 7,
+      "visit_done": false
+    },
+    {
+      "visit_id": 4,
+      "patient_id": 4,
+      "name": "Santosh",
+      "address": "Sector 15, Gurgaon",
+      "email": "alok.kr@gmail.com",
+      "age": 27,
+      "mobileNo": "9927286208",
+      "visit_count": 7,
+      "visit_done": false
+    },
+    {
+      "visit_id": 5,
+      "patient_id": 5,
+      "name": "Mukesh",
+      "address": "Sector 15, Gurgaon",
+      "email": "alok.kr@gmail.com",
+      "age": 27,
+      "mobileNo": "9927286208",
+      "visit_count": 7,
+      "visit_done": true
+    }
+  ]
+}

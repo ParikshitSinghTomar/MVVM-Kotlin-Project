@@ -7,11 +7,12 @@ import android.content.Context
 import bdt.docdoc.common.Constants
 import bdt.docdoc.repo.local.room_db.dao.UserDao
 import bdt.docdoc.repo.local.room_db.entity.User
+import bdt.docdoc.repo.local.roomdb.dao.PatientDao
 
 /**
  * Created by parikshit on 27/6/19.
  */
-@Database(version = Constants.DB_VERSION,entities = arrayOf(User::class))
+@Database(version = Constants.DB_VERSION,entities = arrayOf(User::class,Patient::class))
 abstract class AppDatabase : RoomDatabase() {
 
     companion object {
@@ -36,5 +37,6 @@ abstract class AppDatabase : RoomDatabase() {
     }
 
     abstract fun getUserDao():UserDao
+    abstract fun getPatientDao(): PatientDao
 
 }
