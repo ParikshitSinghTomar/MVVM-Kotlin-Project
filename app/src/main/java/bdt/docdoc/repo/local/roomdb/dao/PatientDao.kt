@@ -2,6 +2,7 @@ package bdt.docdoc.repo.local.roomdb.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
+import android.arch.persistence.room.OnConflictStrategy
 import bdt.docdoc.repo.local.roomdb.entity.Patient
 
 /**
@@ -11,7 +12,7 @@ import bdt.docdoc.repo.local.roomdb.entity.Patient
 @Dao
 interface PatientDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(patientList: List<Patient>)
 
 }

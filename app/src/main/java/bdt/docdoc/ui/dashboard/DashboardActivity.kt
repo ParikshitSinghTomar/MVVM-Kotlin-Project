@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.SearchView
 import bdt.docdoc.BR
 import bdt.docdoc.R
 import bdt.docdoc.common.BaseActivity
@@ -39,14 +40,16 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
 
     lateinit var mBinding: ActivityDashboardBinding
     lateinit var context: Context
+    var patientEntityList = arrayListOf<Patient>()
+    var mAdapter: PatientAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        context=baseContext
+        context = baseContext
         mBinding = getViewDataBinding()!!
         mBinding.viewModel = mDashboardViewModel
         mDashboardViewModel.setNavigator(this)
-
+        mAdapter= PatientAdapter(context)
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
@@ -61,7 +64,9 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        mDashboardViewModel.initPatientView();
+        initSearchView()
+
+        mDashboardViewModel.initPatientView()
     }
 
     override fun getViewModel(): DashboardViewModel {
@@ -144,10 +149,36 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
 
     }
 
-    override fun showPatientList(patientEntityList: ArrayList<Patient>) {
-        var adapter = PatientAdapter(context, patientEntityList)
-        recyclerViewPatients.layoutManager == LinearLayoutManager(context)
-        recyclerViewPatients.adapter = adapter
+    override fun showPatientList(pList: ArrayList<Patient>) {
+        refreshPatientList(pList);
+        recyclerViewPatients.layoutManager = LinearLayoutManager(context)
+        recyclerViewPatients.adapter = mAdapter
+
+    }
+
+    private fun refreshPatientList(pList: ArrayList<Patient>) {
+        if (patientEntityList.size != null) {
+            patientEntityList.clear()
+        }
+        patientEntityList.addAll(pList)
+        mAdapter!!.setPatientList(patientEntityList)
+        mAdapter!!.notifyDataSetChanged()
+    }
+
+    private fun initSearchView() {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                mAdapter!!.filter.filter(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+//                mAdapter!!.filter.filter(query)
+                return false
+            }
+
+        })
     }
 
 }

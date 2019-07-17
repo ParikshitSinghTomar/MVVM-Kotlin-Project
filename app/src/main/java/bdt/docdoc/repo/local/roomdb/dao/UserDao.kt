@@ -2,6 +2,7 @@ package bdt.docdoc.repo.local.room_db.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
+import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import bdt.docdoc.repo.local.room_db.entity.User
 
@@ -11,7 +12,7 @@ import bdt.docdoc.repo.local.room_db.entity.User
 @Dao
 interface UserDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(user: User)
 
     @Query("SELECT COUNT(*) FROM User where id=:id")

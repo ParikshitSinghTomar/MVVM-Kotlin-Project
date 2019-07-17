@@ -68,7 +68,7 @@ class DashboardViewModel : BaseViewModel {
                 patientEntityList.add(patientEntity)
 
             }
-            iDataManager.savePatient(patientEntityList)
+//            iDataManager.savePatient(patientEntityList)
 
             viewModelScope.launch(Dispatchers.Main) {
                 (getNavigator() as IDashboardNavigator).showPatientList(patientEntityList)
