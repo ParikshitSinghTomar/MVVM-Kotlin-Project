@@ -4,12 +4,24 @@
         "source": "/opt/prsnl/android_workspace/DocDoc/app/src/main/res/layout/splash.xml"
     },
     {
+        "merged": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_patient_medicine.xml",
+        "source": "/opt/prsnl/android_workspace/DocDoc/app/src/main/res/layout/fragment_patient_medicine.xml"
+    },
+    {
+        "merged": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_patient_history.xml",
+        "source": "/opt/prsnl/android_workspace/DocDoc/app/src/main/res/layout/fragment_patient_history.xml"
+    },
+    {
         "merged": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_registration.xml",
         "source": "/opt/prsnl/android_workspace/DocDoc/app/src/main/res/layout/activity_registration.xml"
     },
     {
         "merged": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_dashboard.xml",
         "source": "/opt/prsnl/android_workspace/DocDoc/app/src/main/res/layout/activity_dashboard.xml"
+    },
+    {
+        "merged": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_patient_profile.xml",
+        "source": "/opt/prsnl/android_workspace/DocDoc/app/src/main/res/layout/fragment_patient_profile.xml"
     },
     {
         "merged": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_login.xml",

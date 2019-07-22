@@ -2,6 +2,9 @@ package pari.docdoc.di.builder
 
 import bdt.docdoc.ui.dashboard.DashboardActivity
 import bdt.docdoc.ui.dashboard.DashboardActivityModule
+import bdt.docdoc.ui.dashboard.p_history.PatientHistoryFragmentProvider
+import bdt.docdoc.ui.dashboard.p_medicine.PatientMedicineFragmentProvider
+import bdt.docdoc.ui.dashboard.p_profile.PatientProfileFragmentProvider
 import bdt.docdoc.ui.dashboard.p_visit_info.PatientFragmentProvider
 import bdt.docdoc.ui.login.LoginActivity
 import bdt.docdoc.ui.login.LoginActivityModule
@@ -23,13 +26,17 @@ abstract class ActivityBuilder {
     abstract fun bindSplashActivity(): SplashActivity
 
     @ContributesAndroidInjector(modules = arrayOf(RegistrationActivityModule::class))
-    abstract fun bindRegistrationActivity():RegistrationActivity
+    abstract fun bindRegistrationActivity(): RegistrationActivity
 
 
     @ContributesAndroidInjector(modules = arrayOf(LoginActivityModule::class))
     abstract fun bindLoginActivity(): LoginActivity
 
 
-    @ContributesAndroidInjector(modules = arrayOf(DashboardActivityModule::class, PatientFragmentProvider::class))
+    @ContributesAndroidInjector(modules = arrayOf(DashboardActivityModule::class
+            , PatientFragmentProvider::class
+            , PatientProfileFragmentProvider::class
+            , PatientHistoryFragmentProvider::class
+            , PatientMedicineFragmentProvider::class))
     abstract fun bindDashboardActivity(): DashboardActivity
 }

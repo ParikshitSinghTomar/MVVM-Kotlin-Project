@@ -20,7 +20,7 @@
     <string name="p_profile">Profile</string>
     <string name="p_visit_info">Visit</string>
     <string name="p_medicine">Medicine</string>
-    <string name="p_history">Hisort</string>
+    <string name="p_history">History</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

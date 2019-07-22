@@ -20,6 +20,9 @@ import bdt.docdoc.common.BaseActivity
 import bdt.docdoc.common.Constants
 import bdt.docdoc.databinding.ActivityDashboardBinding
 import bdt.docdoc.repo.local.roomdb.entity.Patient
+import bdt.docdoc.ui.dashboard.p_history.PatientHistoryFragment
+import bdt.docdoc.ui.dashboard.p_medicine.PatientMedicineFragment
+import bdt.docdoc.ui.dashboard.p_profile.PatientProfileFragment
 import bdt.docdoc.ui.dashboard.p_visit_info.PatientVisitInfoFragment
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -32,7 +35,8 @@ import javax.inject.Inject
 /**
  * Created by parikshit on 13/7/19.
  */
-class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewModel>(), IDashboardNavigator, NavigationView.OnNavigationItemSelectedListener, HasSupportFragmentInjector {
+class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewModel>(), IDashboardNavigator, NavigationView.OnNavigationItemSelectedListener, HasSupportFragmentInjector, View.OnClickListener {
+
     companion object {
 
         fun getStartIntent(context: Context): Intent {
@@ -78,14 +82,57 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
 
         mDashboardViewModel.initPatientView()
 
+        initTabs()
+
         setUpViewPager()
 
     }
 
+    private fun initTabs() {
+        textViewTabHistory.setOnClickListener(this)
+        textViewTabProfile.setOnClickListener(this)
+        textViewTabVisit.setOnClickListener(this)
+        textViewTabMedicine.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View?) {
+        when (v!!.id) {
+            R.id.textViewTabVisit -> {
+                dashboardViewPager.currentItem = 0
+
+            }
+            R.id.textViewTabProfile -> {
+
+                dashboardViewPager.currentItem = 1
+            }
+            R.id.textViewTabMedicine -> {
+                dashboardViewPager.currentItem = 2
+
+            }
+            R.id.textViewTabHistory -> {
+                dashboardViewPager.currentItem = 3
+            }
+
+
+
+        }
+    }
+
     fun setUpViewPager() {
         val adapter = DashboardFragmentPagerAdapter(getSupportFragmentManager())
-        var firstFragmet: PatientVisitInfoFragment = PatientVisitInfoFragment.newInstance()
-        adapter.addFragment(firstFragmet, Constants.FRAGMENT_PATIENT_INFO)
+        //1
+        var visitInfoFragment: PatientVisitInfoFragment = PatientVisitInfoFragment.newInstance()
+        adapter.addFragment(visitInfoFragment, Constants.FRAGMENT_PATIENT_INFO)
+        //2
+        var profileFragment: PatientProfileFragment = PatientProfileFragment.newInstance()
+        adapter.addFragment(profileFragment, Constants.FRAGMENT_PATIENT_PROFILE)
+        //3
+        var historyFragment: PatientHistoryFragment = PatientHistoryFragment.newInstance()
+        adapter.addFragment(historyFragment, Constants.FRAGMENT_PATIENT_HISTORY)
+        //4
+        var medicineFragment: PatientMedicineFragment = PatientMedicineFragment.newInstance()
+        adapter.addFragment(medicineFragment, Constants.FRAGMENT_PATIENT_MEDICINE)
+
         dashboardViewPager!!.adapter = adapter
         dashboardViewPager!!.setCurrentItem(0)
         dashboardViewPager!!.setOnTouchListener(object : View.OnTouchListener {
@@ -95,6 +142,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
         })
 
     }
+
     override fun supportFragmentInjector(): AndroidInjector<Fragment> {
         return fragmentDispatchingAndroidInjector
     }

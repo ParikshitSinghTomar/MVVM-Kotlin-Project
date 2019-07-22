@@ -51,7 +51,7 @@
                 android:weightSum="4">
 
                 <TextView
-                    android:id="@+id/textViewTab1"
+                    android:id="@+id/textViewTabVisit"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="2dp"
@@ -61,7 +61,7 @@
                     android:text="@string/p_visit_info" />
 
                 <TextView
-                    android:id="@+id/textViewTab2"
+                    android:id="@+id/textViewTabProfile"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="2dp"
@@ -71,7 +71,7 @@
                     android:text="@string/p_profile" />
 
                 <TextView
-                    android:id="@+id/textViewTab3"
+                    android:id="@+id/textViewTabMedicine"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="2dp"
@@ -81,7 +81,7 @@
                     android:text="@string/p_medicine" />
 
                 <TextView
-                    android:id="@+id/textViewTab4"
+                    android:id="@+id/textViewTabHistory"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="2dp"

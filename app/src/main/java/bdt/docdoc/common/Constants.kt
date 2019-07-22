@@ -21,5 +21,8 @@ class Constants {
                 Manifest.permission.ACCESS_NETWORK_STATE
                 )
         val FRAGMENT_PATIENT_INFO: String="patient_info_fragment"
+        val FRAGMENT_PATIENT_PROFILE: String="patient_profile_fragment"
+        val FRAGMENT_PATIENT_HISTORY: String="patient_history_fragment"
+        val FRAGMENT_PATIENT_MEDICINE: String="patient_medicine_fragment"
     }
 }
