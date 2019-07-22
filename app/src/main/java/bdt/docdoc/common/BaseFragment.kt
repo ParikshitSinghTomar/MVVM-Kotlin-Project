@@ -1,5 +1,6 @@
 package bdt.docdoc.common
 
+import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.annotation.LayoutRes
@@ -7,7 +8,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-//import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.AndroidSupportInjection
 
 /**
  * Created by user on 12/3/19.
@@ -16,13 +17,13 @@ import android.view.ViewGroup
 abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : Fragment() {
 
 
-//    private var mBaseActivity: BaseActivity<T, V>? = null
-//    private var mViewDataBinding: T? = null
+    private var mBaseActivity: BaseActivity<T, V>? = null
+    private var mViewDataBinding: T? = null
     private var mBaseViewModel: V? = null
     private var mRootView: View? = null
 
     fun performDependencyInjection() {
-//        AndroidSupportInjection.inject(this)
+        AndroidSupportInjection.inject(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,16 +31,26 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : Fragment()
         super.onCreate(savedInstanceState)
 
         mBaseViewModel = getViewModel()
-        setHasOptionsMenu(true)
+        setHasOptionsMenu(false)
+
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+
+        mViewDataBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
+        mRootView = mViewDataBinding!!.root
+        return mRootView
     }
+
+
 
     abstract fun getViewModel(): V?
 
-    abstract fun getBindingVariables()
+    abstract fun getBindingVariables():Int
+
+    fun getViewDataBinding():T{
+        return mViewDataBinding!!
+    }
 
     abstract
     @LayoutRes

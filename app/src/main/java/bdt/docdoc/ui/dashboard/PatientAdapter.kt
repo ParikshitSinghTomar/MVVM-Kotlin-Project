@@ -60,7 +60,7 @@ class PatientAdapter : RecyclerView.Adapter<PatientAdapter.ViewHolder>, Filterab
             var pTempList = arrayListOf<Patient>()
             if (constraint != null && constraint.isNotEmpty()) {
                 for (patient in patientList) {
-                    if (patient.toString().toLowerCase().contains(constraint)) {
+                    if (patient.toString().toLowerCase().contains(constraint.toString().toLowerCase())) {
                         pTempList.add(patient)
                     }
                 }
@@ -68,7 +68,7 @@ class PatientAdapter : RecyclerView.Adapter<PatientAdapter.ViewHolder>, Filterab
                 filterResult.count = pTempList.size
             } else {
                 filterResult.values = patientList
-                filterResult.values = patientList.size
+                filterResult.count = patientList.size
             }
 
             return filterResult
@@ -78,7 +78,8 @@ class PatientAdapter : RecyclerView.Adapter<PatientAdapter.ViewHolder>, Filterab
             if (filterPatientList != null) {
                 filterPatientList.clear()
             }
-            filterPatientList.addAll(results as List<Patient>)
+
+            filterPatientList=results!!.values as ArrayList<Patient>
             notifyDataSetChanged()
         }
 

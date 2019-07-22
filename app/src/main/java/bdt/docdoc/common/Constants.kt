@@ -20,5 +20,6 @@ class Constants {
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_NETWORK_STATE
                 )
+        val FRAGMENT_PATIENT_INFO: String="patient_info_fragment"
     }
 }

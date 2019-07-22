@@ -188,6 +188,10 @@
         "source": "/home/parikshit/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/58a85094865236ed993241fcaae60e43/res/drawable-xhdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
+        "merged": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/res/merged/debug/layout_fragment_patient_visit_info.xml.flat",
+        "source": "/opt/prsnl/android_workspace/DocDoc/app/src/main/res/layout/fragment_patient_visit_info.xml"
+    },
+    {
         "merged": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/res/merged/debug/layout_abc_search_dropdown_item_icons_2line.xml.flat",
         "source": "/home/parikshit/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/58a85094865236ed993241fcaae60e43/res/layout/abc_search_dropdown_item_icons_2line.xml"
     },

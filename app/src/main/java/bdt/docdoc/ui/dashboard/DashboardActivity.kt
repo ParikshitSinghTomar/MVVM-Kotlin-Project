@@ -5,17 +5,25 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import android.view.MotionEvent
+import android.view.View
 import android.widget.SearchView
 import bdt.docdoc.BR
 import bdt.docdoc.R
 import bdt.docdoc.common.BaseActivity
+import bdt.docdoc.common.Constants
 import bdt.docdoc.databinding.ActivityDashboardBinding
 import bdt.docdoc.repo.local.roomdb.entity.Patient
+import bdt.docdoc.ui.dashboard.p_visit_info.PatientVisitInfoFragment
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.app_bar_dashboard.*
 import kotlinx.android.synthetic.main.content_dashboard.*
@@ -24,9 +32,7 @@ import javax.inject.Inject
 /**
  * Created by parikshit on 13/7/19.
  */
-class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewModel>(), IDashboardNavigator, NavigationView.OnNavigationItemSelectedListener {
-
-
+class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewModel>(), IDashboardNavigator, NavigationView.OnNavigationItemSelectedListener, HasSupportFragmentInjector {
     companion object {
 
         fun getStartIntent(context: Context): Intent {
@@ -34,6 +40,10 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
         }
 
     }
+
+    @Inject
+    lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+
 
     @Inject
     lateinit var mDashboardViewModel: DashboardViewModel
@@ -49,7 +59,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
         mBinding = getViewDataBinding()!!
         mBinding.viewModel = mDashboardViewModel
         mDashboardViewModel.setNavigator(this)
-        mAdapter= PatientAdapter(context)
+        mAdapter = PatientAdapter(context)
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
@@ -67,7 +77,28 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
         initSearchView()
 
         mDashboardViewModel.initPatientView()
+
+        setUpViewPager()
+
     }
+
+    fun setUpViewPager() {
+        val adapter = DashboardFragmentPagerAdapter(getSupportFragmentManager())
+        var firstFragmet: PatientVisitInfoFragment = PatientVisitInfoFragment.newInstance()
+        adapter.addFragment(firstFragmet, Constants.FRAGMENT_PATIENT_INFO)
+        dashboardViewPager!!.adapter = adapter
+        dashboardViewPager!!.setCurrentItem(0)
+        dashboardViewPager!!.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                return true
+            }
+        })
+
+    }
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
+        return fragmentDispatchingAndroidInjector
+    }
+
 
     override fun getViewModel(): DashboardViewModel {
         return mDashboardViewModel
@@ -174,7 +205,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-//                mAdapter!!.filter.filter(query)
+                mAdapter!!.filter.filter(newText)
                 return false
             }
 

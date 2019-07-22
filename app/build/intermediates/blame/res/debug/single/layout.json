@@ -14,5 +14,9 @@
     {
         "merged": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_login.xml",
         "source": "/opt/prsnl/android_workspace/DocDoc/app/src/main/res/layout/activity_login.xml"
+    },
+    {
+        "merged": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_patient_visit_info.xml",
+        "source": "/opt/prsnl/android_workspace/DocDoc/app/src/main/res/layout/fragment_patient_visit_info.xml"
     }
 ]
