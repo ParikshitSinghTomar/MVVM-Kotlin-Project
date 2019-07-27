@@ -3,11 +3,10 @@ package bdt.docdoc.repo.local.storage
 import android.content.Context
 import bdt.docdoc.MyApplication
 import bdt.docdoc.repo.remote.model.request.PatientListRequest
+import bdt.docdoc.repo.remote.model.request.PatientTodayVisitDetailRequest
 import bdt.docdoc.repo.remote.model.request.UserRegistrationRequest
 import bdt.docdoc.repo.remote.model.request.UserRequest
-import bdt.docdoc.repo.remote.model.response.PatientListResponse
-import bdt.docdoc.repo.remote.model.response.UserBaseResponse
-import bdt.docdoc.repo.remote.model.response.UserRegistrationResponse
+import bdt.docdoc.repo.remote.model.response.*
 import bdt.docdoc.repo.remote.rest_api_helper.IRestAPIHelper
 import com.fasterxml.jackson.databind.ObjectMapper
 import java.io.BufferedReader
@@ -17,6 +16,7 @@ import javax.inject.Inject
  * Created by user on 12/3/19.
  */
 class StorageHelper : IStorageHelper, IRestAPIHelper {
+
 
     var context: Context = MyApplication.application
 
@@ -57,4 +57,19 @@ class StorageHelper : IStorageHelper, IRestAPIHelper {
         var response = ObjectMapper().readValue(content, PatientListResponse::class.java)
         return response
     }
+
+    override fun getPatientTodayVisitDetail(patientTodayVisitDetailRequest: PatientTodayVisitDetailRequest): PatientTodayVisitDetailResponse {
+
+        val content = loadFromAssets("patient_symptoms_list.json")
+        var response = ObjectMapper().readValue(content, PatientTodayVisitDetailResponse::class.java)
+        return response
+
+    }
+
+    override fun getMedicineList(): MedicineListResponse {
+        val content = loadFromAssets("medicine_list.json")
+        var response = ObjectMapper().readValue(content, MedicineListResponse::class.java)
+        return response
+    }
+
 }

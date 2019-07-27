@@ -38,6 +38,10 @@
             android:name="bdt.docdoc.ui.dashboard.DashboardActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="bdt.docdoc.ui.medicin_list.ActivityMedicineList"
+            android:imeOptions="flagNoExtractUi"
+            android:screenOrientation="landscape" />
 
         <meta-data
             android:name="android.support.VERSION"

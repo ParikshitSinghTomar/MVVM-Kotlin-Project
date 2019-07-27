@@ -1,0 +1,11 @@
+{
+  "status":true,
+  "message":"Symptoms successfully fetched",
+  "bp":102,
+  "temp":102,
+  "symptoms":[
+
+    {},{}
+  ]
+
+}

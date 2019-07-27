@@ -23,6 +23,7 @@ import javax.inject.Inject
  * Created by user on 12/3/19.
  */
 class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), ILoginNavigator, View.OnClickListener {
+
     override fun showError(error: String) {
         showErrorSnack(error)
     }
@@ -37,7 +38,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), ILog
 
 
     companion object {
-        fun getStartIntent(context: Context):Intent{
+        fun getStartIntent(context: Context): Intent {
             return Intent(context, LoginActivity::class.java)
         }
     }
@@ -155,4 +156,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), ILog
     }
 
 
+    override fun registration() {
+        startActivity(RegistrationActivity.getStartIntent(baseContext))
+    }
 }

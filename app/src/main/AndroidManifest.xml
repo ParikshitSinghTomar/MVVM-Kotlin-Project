@@ -26,9 +26,15 @@
         </activity>
         <activity android:name=".ui.registration.RegistrationActivity" />
         <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.dashboard.DashboardActivity"
+        <activity
+            android:name=".ui.dashboard.DashboardActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.medicin_list.ActivityMedicineList"
+            android:imeOptions="flagNoExtractUi"
+            android:screenOrientation="landscape" />
 
     </application>
 

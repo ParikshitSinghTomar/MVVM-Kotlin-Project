@@ -12,19 +12,23 @@ import javax.inject.Inject
  */
 class SharedPrefHelper : ISharedPrefHelper {
 
-    private var context:Context
-    private var shrdPref:SharedPreferences
-    private var editor:SharedPreferences.Editor
+    private var context: Context
+    private var shrdPref: SharedPreferences
+    private var editor: SharedPreferences.Editor
 
-    private val IS_USER_AUTHENTIC="is_user_authentic"
+    private val IS_USER_AUTHENTIC = "is_user_authentic"
 
-    @Inject constructor(){
+    @Inject constructor() {
         context = MyApplication.application
-        shrdPref=context.getSharedPreferences(Constants.PREF_NAME,Context.MODE_PRIVATE)
-        editor=shrdPref.edit()
+        shrdPref = context.getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
+        editor = shrdPref.edit()
     }
 
     override fun isUserAuthentic(): Boolean {
-        return  shrdPref.getBoolean(IS_USER_AUTHENTIC,false)
+        return shrdPref.getBoolean(IS_USER_AUTHENTIC, false)
+    }
+
+    override fun setUserAuthentic(status: Boolean) {
+        shrdPref.edit().putBoolean(IS_USER_AUTHENTIC, status).apply()
     }
 }

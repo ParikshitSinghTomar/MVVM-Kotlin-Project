@@ -16,7 +16,6 @@ import kotlinx.coroutines.launch
 class DashboardViewModel : BaseViewModel {
 
     var iDataManager: IDataManager
-    lateinit var iDashboardNavigator: IDashboardNavigator
 
     constructor(iDataManager: IDataManager) : super(iDataManager) {
         this.iDataManager = iDataManager

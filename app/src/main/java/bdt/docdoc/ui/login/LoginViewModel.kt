@@ -78,6 +78,7 @@ class LoginViewModel
         }
         viewModelScope.launch(Dispatchers.Main) {
             if (userBaseResponse.errors.equals(EMPTY_STRING) && userBaseResponse.status) {
+                updateLoginStatus()
                 (getNavigator() as ILoginNavigator).loginSuccessful(userBaseResponse.data)
             } else {
                 (getNavigator() as ILoginNavigator).showError(userBaseResponse.errors)
@@ -86,5 +87,14 @@ class LoginViewModel
 
     }
 
+    private fun updateLoginStatus(){
+        viewModelScope.launch(Dispatchers.IO){
+            iDataManager.setUserAuthentic(true)
+        }
+    }
+
+    private fun register(){
+        (getNavigator() as ILoginNavigator).registration()
+    }
 
 }

@@ -24,5 +24,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="patient_home_map_description" >Patient Home Map Location with Simple Map Shortcut</string>
 
 </resources>

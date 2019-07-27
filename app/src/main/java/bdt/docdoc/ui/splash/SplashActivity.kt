@@ -9,6 +9,7 @@ import bdt.docdoc.BR
 import bdt.docdoc.R
 import bdt.docdoc.common.BaseActivity
 import bdt.docdoc.databinding.SplashBinding
+import bdt.docdoc.ui.dashboard.DashboardActivity
 import bdt.docdoc.ui.login.LoginActivity
 import bdt.docdoc.ui.registration.RegistrationActivity
 import javax.inject.Inject
@@ -60,7 +61,7 @@ class SplashActivity : BaseActivity<SplashBinding, SplashViewModel>(), ISplashNa
 
             override fun onFinish() {
                 if (mSplashViewModel.isUserAuthentic()) {
-                    startActivity(RegistrationActivity.getStartIntent(context))
+                    startActivity(DashboardActivity.getStartIntent(context))
                 } else {
                     startActivity(LoginActivity.getStartIntent(context))
                 }

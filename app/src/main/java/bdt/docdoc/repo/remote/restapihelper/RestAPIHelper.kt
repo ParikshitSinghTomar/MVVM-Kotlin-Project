@@ -6,11 +6,10 @@ import bdt.docdoc.BuildConfig
 import bdt.docdoc.repo.local.room_db.entity.User
 import bdt.docdoc.repo.local.roomdb.entity.Patient
 import bdt.docdoc.repo.remote.model.request.PatientListRequest
+import bdt.docdoc.repo.remote.model.request.PatientTodayVisitDetailRequest
 import bdt.docdoc.repo.remote.model.request.UserRegistrationRequest
 import bdt.docdoc.repo.remote.model.request.UserRequest
-import bdt.docdoc.repo.remote.model.response.PatientListResponse
-import bdt.docdoc.repo.remote.model.response.UserBaseResponse
-import bdt.docdoc.repo.remote.model.response.UserRegistrationResponse
+import bdt.docdoc.repo.remote.model.response.*
 import bdt.docdoc.repo.remote.rest_api_helper.IRestAPIHelper
 import java.io.IOException
 import javax.inject.Inject
@@ -77,6 +76,38 @@ class RestAPIHelper : IRestAPIHelper {
         response.errors = error
         return response
 
+    }
+
+    override fun getPatientTodayVisitDetail(patientTodayVisitDetailRequest: PatientTodayVisitDetailRequest): PatientTodayVisitDetailResponse {
+        val url = BuildConfig.BASE_URL + "patientTodayVisit"
+        var error = "NoError"
+        try {
+            var response = retrofitService.fetchPatientTodayVisitDetail(url, patientTodayVisitDetailRequest).blockingGet()
+            Log.e(TAG, response.toString())
+            return response
+        } catch (e: IOException) {
+            error = e.message!!
+            e.printStackTrace()
+        }
+        var response = PatientTodayVisitDetailResponse()
+        response.errors = error
+        return response
+    }
+
+    override fun getMedicineList(): MedicineListResponse {
+        val url = BuildConfig.BASE_URL + "fetchMedicineList"
+        var error = "NoError"
+        try {
+            var response = retrofitService.fetchMedicineList(url).blockingGet()
+            Log.e(TAG, response.toString())
+            return response
+        } catch (e: IOException) {
+            error = e.message!!
+            e.printStackTrace()
+        }
+        var response = MedicineListResponse()
+        response.errors = error
+        return response
     }
 
 }

@@ -5,5 +5,6 @@ package bdt.docdoc.repo.local.sharedpref
  */
 interface ISharedPrefHelper {
 
-    fun isUserAuthentic():Boolean
+    fun isUserAuthentic(): Boolean
+    fun setUserAuthentic(status: Boolean)
 }

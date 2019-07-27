@@ -12,6 +12,10 @@
         "source": "/opt/prsnl/android_workspace/DocDoc/app/src/main/res/layout/fragment_patient_history.xml"
     },
     {
+        "merged": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_list_medicine.xml",
+        "source": "/opt/prsnl/android_workspace/DocDoc/app/src/main/res/layout/activity_list_medicine.xml"
+    },
+    {
         "merged": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_registration.xml",
         "source": "/opt/prsnl/android_workspace/DocDoc/app/src/main/res/layout/activity_registration.xml"
     },

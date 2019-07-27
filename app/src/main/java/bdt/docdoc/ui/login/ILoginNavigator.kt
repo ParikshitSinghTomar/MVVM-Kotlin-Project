@@ -10,5 +10,6 @@ import bdt.docdoc.repo.remote.model.response.UserResponse
 interface ILoginNavigator:INavigator {
 
     fun loginSuccessful(userResponse: UserResponse)
+    fun registration()
 
 }

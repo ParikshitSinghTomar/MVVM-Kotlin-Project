@@ -96,7 +96,7 @@ class PatientAdapter : RecyclerView.Adapter<PatientAdapter.ViewHolder>, Filterab
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        var textViewName: TextView = view.findViewById(R.id.textViewPatientName)
+        var textViewName: TextView = view.findViewById(R.id.textViewAddressValue)
         var textViewAddress: TextView = view.findViewById(R.id.textViewPatientAddress)
         var textViewEmail: TextView = view.findViewById(R.id.textViewPatientEmail)
         var textViewMobileNo: TextView = view.findViewById(R.id.textViewPatientMobileNo)

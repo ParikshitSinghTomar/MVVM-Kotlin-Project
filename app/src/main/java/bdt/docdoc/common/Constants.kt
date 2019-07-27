@@ -24,5 +24,9 @@ class Constants {
         val FRAGMENT_PATIENT_PROFILE: String="patient_profile_fragment"
         val FRAGMENT_PATIENT_HISTORY: String="patient_history_fragment"
         val FRAGMENT_PATIENT_MEDICINE: String="patient_medicine_fragment"
+        val SYMPTOMS: String="Symptoms"
+        val ADD_SYMPTOMS: String="Tap to add more Symptoms"
+        val MEDICINE: String="Medicine"
+        val ADD_MEDICINE: String="Tap to add more Medicine"
     }
 }

@@ -23,7 +23,7 @@
             android:layout_marginEnd="148dp"
             android:layout_marginStart="48dp"
             android:layout_marginTop="48dp"
-            android:text="PatientHistory"
+            android:text="Patient Medicine"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
