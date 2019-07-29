@@ -1,11 +1,56 @@
 {
-  "status":true,
-  "message":"Symptoms successfully fetched",
-  "bp":102,
-  "temp":102,
-  "symptoms":[
-
-    {},{}
+  "status": true,
+  "message": "Medicine List successfully fetched",
+  "code": 102,
+  "errors": "",
+  "data": [
+    {
+      "_id": 1,
+      "name": "Parcetamol",
+      "description": "Sample description for this medicine",
+      "detail_url": "https://www.google.com/pacetamol"
+    },
+    {
+      "_id": 2,
+      "name": "Vicks",
+      "description": "Sample description for this medicine",
+      "detail_url": "https://www.google.com/Vicks"
+    },
+    {
+      "_id": 3,
+      "name": "Vovran",
+      "description": "Sample description for this medicine",
+      "detail_url": "https://www.google.com/Vovran"
+    },
+    {
+      "_id": 4,
+      "name": "Amitiza",
+      "description": "Sample description for this medicine",
+      "detail_url": "https://www.google.com/Amitiza"
+    },
+    {
+      "_id": 5,
+      "name": "Actos",
+      "description": "Sample description for this medicine",
+      "detail_url": "https://www.google.com/Actos"
+    },
+    {
+      "_id": 6,
+      "name": "Adderall XR",
+      "description": "Sample description for this medicine",
+      "detail_url": "https://www.google.com/Adderall XR"
+    },
+    {
+      "_id": 7,
+      "name": "Advair",
+      "description": "Sample description for this medicine",
+      "detail_url": "https://www.google.com/Advair"
+    },
+    {
+      "_id": 8,
+      "name": "Allegra",
+      "description": "Sample description for this medicine",
+      "detail_url": "https://www.google.com/Allegra"
+    }
   ]
-
 }

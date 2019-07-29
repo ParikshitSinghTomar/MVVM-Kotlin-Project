@@ -3,6 +3,7 @@ package bdt.docdoc.repo.local.roomdb
 import bdt.docdoc.repo.local.room_db.IRoomDBHelper
 import bdt.docdoc.repo.local.room_db.entity.User
 import bdt.docdoc.repo.local.roomdb.entity.AppDatabase
+import bdt.docdoc.repo.local.roomdb.entity.Medicine
 import bdt.docdoc.repo.local.roomdb.entity.Patient
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -12,6 +13,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class RoomDBHelper : IRoomDBHelper {
+
 
     var appDatabase: AppDatabase
 
@@ -44,4 +46,20 @@ class RoomDBHelper : IRoomDBHelper {
         }
     }
 
+    override fun saveMedicineList(medicineEntityList: ArrayList<Medicine>) {
+        try {
+            appDatabase.getMedicineDao().insert(medicineEntityList)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    override fun getDBMedicineList(): List<Medicine> {
+        try {
+            return appDatabase.getMedicineDao().getMedicineList()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return ArrayList<Medicine>()
+    }
 }

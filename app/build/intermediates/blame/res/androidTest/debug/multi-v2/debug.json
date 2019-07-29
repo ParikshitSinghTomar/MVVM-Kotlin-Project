@@ -399,21 +399,6 @@
             ]
         },
         {
-            "outputFile": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/res/merged/androidTest/debug/values-large-v4_values-large-v4.arsc.flat",
-            "map": [
-                {
-                    "source": "/home/parikshit/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/58a85094865236ed993241fcaae60e43/res/values-large-v4/values-large-v4.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,114,185,256,326,396,464,532,636",
-                        "endColumns": "58,70,70,69,69,67,67,103,115",
-                        "endOffsets": "109,180,251,321,391,459,527,631,747"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/res/merged/androidTest/debug/values-ro_values-ro.arsc.flat",
             "map": [
                 {
@@ -424,6 +409,21 @@
                         "startOffsets": "55,176,284,407,511,624,712,824,945,1030,1111,1194,1306,1419,1519,1633,1738,1844,1965,2068,2151",
                         "endColumns": "120,107,122,103,112,87,111,120,84,80,82,111,112,99,113,104,105,120,102,82,100",
                         "endOffsets": "171,279,402,506,619,707,819,940,1025,1106,1189,1301,1414,1514,1628,1733,1839,1960,2063,2146,2247"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/res/merged/androidTest/debug/values-large-v4_values-large-v4.arsc.flat",
+            "map": [
+                {
+                    "source": "/home/parikshit/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/58a85094865236ed993241fcaae60e43/res/values-large-v4/values-large-v4.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,114,185,256,326,396,464,532,636",
+                        "endColumns": "58,70,70,69,69,67,67,103,115",
+                        "endOffsets": "109,180,251,321,391,459,527,631,747"
                     }
                 }
             ]
@@ -459,21 +459,6 @@
             ]
         },
         {
-            "outputFile": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/res/merged/androidTest/debug/values-el_values-el.arsc.flat",
-            "map": [
-                {
-                    "source": "/home/parikshit/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/58a85094865236ed993241fcaae60e43/res/values-el/values-el.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,173,281,404,515,632,717,822,948,1036,1122,1207,1318,1428,1530,1641,1750,1858,1981,2081,2166",
-                        "endColumns": "117,107,122,110,116,84,104,125,87,85,84,110,109,101,110,108,107,122,99,84,100",
-                        "endOffsets": "168,276,399,510,627,712,817,943,1031,1117,1202,1313,1423,1525,1636,1745,1853,1976,2076,2161,2262"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/res/merged/androidTest/debug/values-mn_values-mn.arsc.flat",
             "map": [
                 {
@@ -484,6 +469,21 @@
                         "startOffsets": "55,168,276,399,499,612,699,805,917,999,1081,1163,1272,1376,1473,1581,1682,1785,1907,2004,2085",
                         "endColumns": "112,107,122,99,112,86,105,111,81,81,81,108,103,96,107,100,102,121,96,80,100",
                         "endOffsets": "163,271,394,494,607,694,800,912,994,1076,1158,1267,1371,1468,1576,1677,1780,1902,1999,2080,2181"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/res/merged/androidTest/debug/values-el_values-el.arsc.flat",
+            "map": [
+                {
+                    "source": "/home/parikshit/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/58a85094865236ed993241fcaae60e43/res/values-el/values-el.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,173,281,404,515,632,717,822,948,1036,1122,1207,1318,1428,1530,1641,1750,1858,1981,2081,2166",
+                        "endColumns": "117,107,122,110,116,84,104,125,87,85,84,110,109,101,110,108,107,122,99,84,100",
+                        "endOffsets": "168,276,399,510,627,712,817,943,1031,1117,1202,1313,1423,1525,1636,1745,1853,1976,2076,2161,2262"
                     }
                 }
             ]
@@ -790,21 +790,6 @@
             ]
         },
         {
-            "outputFile": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/res/merged/androidTest/debug/values-tr_values-tr.arsc.flat",
-            "map": [
-                {
-                    "source": "/home/parikshit/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/58a85094865236ed993241fcaae60e43/res/values-tr/values-tr.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,160,268,391,490,602,687,793,913,992,1068,1147,1254,1359,1455,1562,1664,1772,1891,1989,2068",
-                        "endColumns": "104,107,122,98,111,84,105,119,78,75,78,106,104,95,106,101,107,118,97,78,100",
-                        "endOffsets": "155,263,386,485,597,682,788,908,987,1063,1142,1249,1354,1450,1557,1659,1767,1886,1984,2063,2164"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/res/merged/androidTest/debug/values-v17_values-v17.arsc.flat",
             "map": [
                 {
@@ -816,6 +801,21 @@
                         "endLines": "4,8,11,14,17,21,25,28,31,34,38,41,45,49",
                         "endColumns": "12,12,12,12,12,12,12,12,12,12,12,12,12,12",
                         "endOffsets": "223,451,609,759,931,1159,1401,1572,1746,1915,2188,2388,2592,2921"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/res/merged/androidTest/debug/values-tr_values-tr.arsc.flat",
+            "map": [
+                {
+                    "source": "/home/parikshit/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/58a85094865236ed993241fcaae60e43/res/values-tr/values-tr.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,160,268,391,490,602,687,793,913,992,1068,1147,1254,1359,1455,1562,1664,1772,1891,1989,2068",
+                        "endColumns": "104,107,122,98,111,84,105,119,78,75,78,106,104,95,106,101,107,118,97,78,100",
+                        "endOffsets": "155,263,386,485,597,682,788,908,987,1063,1142,1249,1354,1450,1557,1659,1767,1886,1984,2063,2164"
                     }
                 }
             ]

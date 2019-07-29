@@ -1,6 +1,7 @@
 package bdt.docdoc.repo.local.room_db
 
 import bdt.docdoc.repo.local.room_db.entity.User
+import bdt.docdoc.repo.local.roomdb.entity.Medicine
 import bdt.docdoc.repo.local.roomdb.entity.Patient
 
 /**
@@ -16,5 +17,9 @@ interface IRoomDBHelper {
     fun getCurrentUser(): User
 
     fun savePatient(patientEntityList: List<Patient>)
+
+    fun saveMedicineList(medicineEntityList: ArrayList<Medicine>)
+
+    fun getDBMedicineList(): List<Medicine>
 
 }

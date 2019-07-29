@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey
 /**
  * Created by parikshit on 27/7/19.
  */
-@Entity
+@Entity()
 data class Medicine(@PrimaryKey val _id: Int,
                     val name: String,
                     val description: String,

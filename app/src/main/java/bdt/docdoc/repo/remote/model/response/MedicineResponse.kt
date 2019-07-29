@@ -11,14 +11,14 @@ import com.fasterxml.jackson.annotation.JsonProperty
 @JsonIgnoreProperties(ignoreUnknown = true)
 class MedicineResponse {
 
-    @JsonProperty(value = "visit_id")
+    @JsonProperty(value = "_id")
     var id = -1
 
-    @JsonProperty(value = "visit_id")
+    @JsonProperty(value = "name")
     val name: String = Constants.EMPTY_STRING
-    @JsonProperty(value = "visit_id")
+    @JsonProperty(value = "description")
     val description: String = Constants.EMPTY_STRING
-    @JsonProperty(value = "visit_id")
+    @JsonProperty(value = "detail_url")
     val detail_url: String = Constants.EMPTY_STRING
 
     override fun toString(): String {

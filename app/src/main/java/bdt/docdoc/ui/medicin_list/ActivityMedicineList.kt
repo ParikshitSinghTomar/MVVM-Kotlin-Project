@@ -3,11 +3,14 @@ package bdt.docdoc.ui.medicin_list
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.widget.SearchView
 import bdt.docdoc.BR
 import bdt.docdoc.R
 import bdt.docdoc.common.BaseActivity
 import bdt.docdoc.common.INavigator
 import bdt.docdoc.databinding.ActivityListMedicineBinding
+import bdt.docdoc.repo.local.roomdb.entity.Medicine
 import javax.inject.Inject
 
 /**
@@ -22,12 +25,28 @@ class ActivityMedicineList : BaseActivity<ActivityListMedicineBinding, MedicineL
     lateinit var mBinding: ActivityListMedicineBinding
     lateinit var context: Context
 
+    var adapter: MedicineListAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         context = baseContext
         mBinding = getViewDataBinding()!!
         mBinding.viewModel = mViewModel
         mViewModel.setNavigator(this)
+        mViewModel.getListOfMedicine()
+
+        mBinding.searchViewMedicineSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+//                adapter!!.
+                return true;
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true;
+            }
+
+        })
+
     }
 
 
@@ -36,9 +55,7 @@ class ActivityMedicineList : BaseActivity<ActivityListMedicineBinding, MedicineL
     }
 
     override fun getBindingVariable(): Int {
-
         return BR._all
-
     }
 
     override fun getLayoutId(): Int {
@@ -46,19 +63,19 @@ class ActivityMedicineList : BaseActivity<ActivityListMedicineBinding, MedicineL
     }
 
     override fun executePendingBindings() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//        mBinding.executePendingBindings()
     }
 
     override fun showError(error: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        showError(error)
     }
 
     override fun showToast(error: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        showToast(error)
     }
 
     override fun showSuccess(success: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        showSuccessSnack(success)
     }
 
     companion object {
@@ -68,7 +85,15 @@ class ActivityMedicineList : BaseActivity<ActivityListMedicineBinding, MedicineL
         }
 
         val ACTIVTY_REQUEST_CODE_ADD_MEDICINE = 1010;
-        val RESULT_INTENT_MEDICINE_NAME="medicine_name"
+        val RESULT_INTENT_MEDICINE_NAME = "medicine_name"
     }
 
+    override fun showMedicineList(list: ArrayList<Medicine>) {
+        adapter = MedicineListAdapter(context, list)
+
+        mBinding.recyclerViewMedicineList.layoutManager = LinearLayoutManager(context)
+        mBinding.recyclerViewMedicineList.adapter = adapter
+        adapter!!.notifyDataSetChanged()
+
+    }
 }
