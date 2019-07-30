@@ -1,5 +1,6 @@
 package bdt.docdoc.ui.medicin_list
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -16,7 +17,7 @@ import javax.inject.Inject
 /**
  * Created by parikshit on 27/7/19.
  */
-class ActivityMedicineList : BaseActivity<ActivityListMedicineBinding, MedicineListViewModel>(), IMedicineListNavigator {
+class ActivityMedicineList : BaseActivity<ActivityListMedicineBinding, MedicineListViewModel>(), IMedicineListNavigator, MedicineListAdapter.ItemClickListener {
 
 
     @Inject
@@ -37,11 +38,12 @@ class ActivityMedicineList : BaseActivity<ActivityListMedicineBinding, MedicineL
 
         mBinding.searchViewMedicineSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-//                adapter!!.
+//                adapter!!.getNameFilter().filter(query)
                 return true;
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                adapter!!.getNameFilter().filter(newText)
                 return true;
             }
 
@@ -89,11 +91,17 @@ class ActivityMedicineList : BaseActivity<ActivityListMedicineBinding, MedicineL
     }
 
     override fun showMedicineList(list: ArrayList<Medicine>) {
-        adapter = MedicineListAdapter(context, list)
+        adapter = MedicineListAdapter(context, list, this)
 
         mBinding.recyclerViewMedicineList.layoutManager = LinearLayoutManager(context)
         mBinding.recyclerViewMedicineList.adapter = adapter
         adapter!!.notifyDataSetChanged()
+    }
 
+    override fun itemClick(medicine: Medicine) {
+        var intent = Intent()
+        intent.putExtra(RESULT_INTENT_MEDICINE_NAME, medicine.name)
+        setResult(Activity.RESULT_OK, intent)
+        finish()
     }
 }

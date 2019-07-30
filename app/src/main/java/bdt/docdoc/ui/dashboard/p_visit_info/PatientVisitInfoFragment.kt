@@ -16,6 +16,7 @@ import bdt.docdoc.R
 import bdt.docdoc.common.BaseFragment
 import bdt.docdoc.common.Constants
 import bdt.docdoc.databinding.FragmentPatientVisitInfoBinding
+import bdt.docdoc.repo.local.roomdb.entity.Medicine
 import bdt.docdoc.repo.remote.model.common.CommonObjectSymptomsDescription
 import bdt.docdoc.repo.remote.model.common.MedicineDescription
 import bdt.docdoc.repo.remote.model.common.Symptoms
@@ -36,7 +37,10 @@ class PatientVisitInfoFragment : BaseFragment<FragmentPatientVisitInfoBinding, P
     private var baseContext: Context? = null
     var adapterSymptoms: AdapterSymptoms? = null
 
-    private var response: PatientTodayVisitDetailResponse? = null
+
+    private var medicineList = ArrayList<CommonObjectSymptomsDescription>()
+    private var symptomsList = ArrayList<CommonObjectSymptomsDescription>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,45 +101,51 @@ class PatientVisitInfoFragment : BaseFragment<FragmentPatientVisitInfoBinding, P
     }
 
     override fun showDetails(response: PatientTodayVisitDetailResponse) {
-        this.response = response
-        var visitList = getFreshList()
+        createSymptomsList(response)
+        var visitList = getRefreshedList()
         adapterSymptoms = AdapterSymptoms(visitList, baseContext as Context, this)
         recyclerViewTodaySymptoms.layoutManager = LinearLayoutManager(context)
         recyclerViewTodaySymptoms.adapter = adapterSymptoms
         adapterSymptoms!!.notifyDataSetChanged()
     }
 
-    private fun getFreshList(): ArrayList<CommonObjectSymptomsDescription> {
+    private fun createSymptomsList(response: PatientTodayVisitDetailResponse) {
+        for (symptomName in response.symptoms) {
+            var symptom = Symptoms()
+            symptom.name = symptomName
+            symptom.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.SYMPTOMS
+            symptomsList.add(symptom)
+        }
+    }
+
+    private fun getRefreshedList(): ArrayList<CommonObjectSymptomsDescription> {
         var visitList = arrayListOf<CommonObjectSymptomsDescription>()
 
-        if (response != null) {
-            var symptomsHeading = Symptoms()
-            symptomsHeading.name = Constants.SYMPTOMS
-            symptomsHeading.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.HEAD_SYMPTOMS
-            visitList.add(symptomsHeading)
-            for (s in response!!.symptoms) {
-                var commonObjectSymptomsDescription = Symptoms()
-                commonObjectSymptomsDescription.name = s
-                commonObjectSymptomsDescription.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.SYMPTOMS
-                visitList.add(commonObjectSymptomsDescription)
-            }
+        var symptomsHeading = Symptoms()
+        symptomsHeading.name = Constants.SYMPTOMS
+        symptomsHeading.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.HEAD_SYMPTOMS
+        visitList.add(symptomsHeading)
 
-            var addSymptomsButton = Symptoms()
-            addSymptomsButton.name = Constants.ADD_SYMPTOMS
-            addSymptomsButton.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_SYMPTOMS
-            visitList.add(addSymptomsButton)
+        visitList.addAll(symptomsList)
 
-            var medicineHeading = MedicineDescription()
-            medicineHeading.name = Constants.MEDICINE
-            medicineHeading.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.HEAD_MEDICINE
-            visitList.add(medicineHeading)
+        var addSymptomsButton = Symptoms()
+        addSymptomsButton.name = Constants.ADD_SYMPTOMS
+        addSymptomsButton.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_SYMPTOMS
+        visitList.add(addSymptomsButton)
+
+        var medicineHeading = MedicineDescription()
+        medicineHeading.name = Constants.MEDICINE
+        medicineHeading.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.HEAD_MEDICINE
+        visitList.add(medicineHeading)
 
 
-            var addMedicine = MedicineDescription()
-            addMedicine.name = Constants.ADD_MEDICINE
-            addMedicine.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_MEDICINE
-            visitList.add(addMedicine)
-        }
+        visitList.addAll(medicineList)
+
+        var addMedicine = MedicineDescription()
+        addMedicine.name = Constants.ADD_MEDICINE
+        addMedicine.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_MEDICINE
+        visitList.add(addMedicine)
+
         return visitList
 
     }
@@ -157,52 +167,25 @@ class PatientVisitInfoFragment : BaseFragment<FragmentPatientVisitInfoBinding, P
                     cOSD.days = 1
                     cOSD.timeInDay = 1
                     cOSD.remarks = ""
-
-                    addItem(cOSD)
+                    medicineList.add(cOSD)
+                    refreshList()
                 }
             }
         }
     }
 
-    private fun addItem(cOSD: CommonObjectSymptomsDescription) {
-        var visitList = arrayListOf<CommonObjectSymptomsDescription>()
-
-        if (response != null) {
-            var symptomsHeading = Symptoms()
-            symptomsHeading.name = Constants.SYMPTOMS
-            symptomsHeading.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.HEAD_SYMPTOMS
-            visitList.add(symptomsHeading)
-            for (s in response!!.symptoms) {
-                var commonObjectSymptomsDescription = Symptoms()
-                commonObjectSymptomsDescription.name = s
-                commonObjectSymptomsDescription.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.SYMPTOMS
-                visitList.add(commonObjectSymptomsDescription)
-            }
-            if (cOSD.objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.SYMPTOMS)) {
-                visitList.add(cOSD)
-            }
-            var addSymptomsButton = Symptoms()
-            addSymptomsButton.name = Constants.ADD_SYMPTOMS
-            addSymptomsButton.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_SYMPTOMS
-            visitList.add(addSymptomsButton)
-
-            var medicineHeading = MedicineDescription()
-            medicineHeading.name = Constants.MEDICINE
-            medicineHeading.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.HEAD_MEDICINE
-            visitList.add(medicineHeading)
-
-            if (cOSD.objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.MEDICINE)) {
-                visitList.add(cOSD)
-            }
-
-            var addMedicine = MedicineDescription()
-            addMedicine.name = Constants.ADD_MEDICINE
-            addMedicine.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_MEDICINE
-            visitList.add(addMedicine)
-        }
-        adapterSymptoms!!.notifyDataSetChanged()
-
+    private fun refreshList() {
+        var visitList = getRefreshedList()
+        adapterSymptoms!!.refreshData(visitList)
     }
 
+    override fun removeMedicine(medicineDescription: MedicineDescription) {
+        medicineList.remove(medicineDescription as CommonObjectSymptomsDescription)
+        refreshList()
+    }
 
+    override fun removeSymptom(symptoms: Symptoms) {
+        symptomsList.remove(symptoms as CommonObjectSymptomsDescription)
+        refreshList()
+    }
 }

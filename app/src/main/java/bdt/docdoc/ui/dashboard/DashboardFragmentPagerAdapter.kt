@@ -3,12 +3,13 @@ package bdt.docdoc.ui.dashboard
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.app.FragmentStatePagerAdapter
 
 
 /**
  * Created by parikshit on 22/7/19.
  */
-class DashboardFragmentPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
+class DashboardFragmentPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager) {
     private val mFragmentList: ArrayList<Fragment> = ArrayList()
     private val mFragmentTitleList: ArrayList<String> = ArrayList()
 

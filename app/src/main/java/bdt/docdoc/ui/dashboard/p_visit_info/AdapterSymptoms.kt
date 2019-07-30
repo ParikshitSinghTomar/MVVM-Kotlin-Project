@@ -10,7 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import bdt.docdoc.R
+import bdt.docdoc.repo.local.roomdb.entity.Medicine
 import bdt.docdoc.repo.remote.model.common.CommonObjectSymptomsDescription
+import bdt.docdoc.repo.remote.model.common.MedicineDescription
+import bdt.docdoc.repo.remote.model.common.Symptoms
 
 /**
  * Created by parikshit on 25/7/19.
@@ -26,6 +29,12 @@ class AdapterSymptoms : RecyclerView.Adapter<AdapterSymptoms.ViewHolder> {
         this.listSymptoms = list
         this.baseContext = context
         this.listener = listener
+    }
+
+    fun refreshData(list: ArrayList<CommonObjectSymptomsDescription>) {
+        this.listSymptoms.clear()
+        this.listSymptoms.addAll(list)
+        notifyDataSetChanged()
     }
 
 
@@ -77,14 +86,13 @@ class AdapterSymptoms : RecyclerView.Adapter<AdapterSymptoms.ViewHolder> {
                 var tg = (v!!.tag) as CommonObjectSymptomsDescription
                 if (tg.objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.SYMPTOMS)
                 ) {
-                    Log.i("", "Add Medicine Button")
-//                    Toast.makeText(baseContext, "Add Medicine", Toast.LENGTH_SHORT).show()
+                    Log.i("", "Remove Symptom Button")
+                    listener.removeSymptom(tg as Symptoms)
                 } else if (tg.objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.MEDICINE)
                 ) {
-                    Log.i("", "Add Medicine Button")
-//                    Toast.makeText(baseContext, "Add Medicine", Toast.LENGTH_SHORT).show()
+                    Log.i("", "Remove Medicine Button")
+                    listener.removeMedicine(tg as MedicineDescription)
                 }
-
             }
         })
 
@@ -101,15 +109,16 @@ class AdapterSymptoms : RecyclerView.Adapter<AdapterSymptoms.ViewHolder> {
                 ) {
                     Log.i("", "Add Symptoms Button")
                     Toast.makeText(baseContext, "Add Symptoms", Toast.LENGTH_SHORT).show()
-                } else if (tg.objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.MEDICINE)
-                ) {
-                    Log.i("", "Add/Delete Medicine Row")
-                    Toast.makeText(baseContext, "Add/Delete Medicine Row", Toast.LENGTH_SHORT).show()
-                } else if (tg.objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.SYMPTOMS)
-                ) {
-                    Log.i("", "Add/Delete Symptoms Row")
-                    Toast.makeText(baseContext, "Add/Delete Symptoms Row", Toast.LENGTH_SHORT).show()
                 }
+//                else if (tg.objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.MEDICINE)
+//                ) {
+//                    Log.i("", "Add/Delete Medicine Row")
+//                    Toast.makeText(baseContext, "Add/Delete Medicine Row", Toast.LENGTH_SHORT).show()
+//                } else if (tg.objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.SYMPTOMS)
+//                ) {
+//                    Log.i("", "Add/Delete Symptoms Row")
+//                    Toast.makeText(baseContext, "Add/Delete Symptoms Row", Toast.LENGTH_SHORT).show()
+//                }
             }
         })
     }

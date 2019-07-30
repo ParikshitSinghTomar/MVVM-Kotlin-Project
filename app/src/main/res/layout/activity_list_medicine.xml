@@ -13,7 +13,7 @@
             type="bdt.docdoc.ui.medicin_list.MedicineListViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -21,6 +21,7 @@
             android:id="@+id/searchViewMedicineSearch"
             android:layout_width="368dp"
             android:layout_height="37dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -32,12 +33,13 @@
             android:id="@+id/recyclerViewMedicineList"
             android:layout_width="362dp"
             android:layout_height="444dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_alignStart="@+id/searchViewMedicineSearch"
+            android:layout_below="@+id/searchViewMedicineSearch"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+    </RelativeLayout>
 </layout>

@@ -13,7 +13,7 @@
             type="bdt.docdoc.ui.dashboard.p_visit_info.PatientVisitInfoViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -22,34 +22,29 @@
             android:id="@+id/textViewPatientName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical|left"
-            android:text="Name NAme"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_toEndOf="@+id/imageView2"
+            android:layout_alignTop="@id/imageView2"
+            android:layout_marginLeft="10dp"
+            android:text="Name NAme" />
 
         <TextView
             android:id="@+id/textViewPatientTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical|left"
-            android:text="Temprature: 30 C"
-            app:layout_constraintStart_toEndOf="@+id/textViewPatientName"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_toEndOf="@+id/textViewPatientName"
+            android:layout_alignTop="@id/textViewPatientName"
+            android:layout_marginLeft="10dp"
+            android:text="Temprature: 30 C" />
 
         <TextView
             android:id="@+id/textViewPatientBP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical|left"
             android:text="B.P. : 90"
-            app:layout_constraintStart_toEndOf="@+id/textViewPatientTemp"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_toEndOf="@+id/textViewPatientTemp"
+            android:layout_alignTop="@id/textViewPatientTemp"
+            android:layout_marginLeft="10dp"
+            android:visibility="visible" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -57,24 +52,19 @@
             android:layout_height="40dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/ic_launcher" />
 
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewTodaySymptoms"
-            android:layout_width="576dp"
+            android:layout_width="match_parent"
             android:layout_height="297dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            android:layout_margin="10dp"
+            android:layout_below="@id/imageView2"
+            android:visibility="visible"/>
 
 
-    </android.support.constraint.ConstraintLayout>
+    </RelativeLayout>
 </layout>

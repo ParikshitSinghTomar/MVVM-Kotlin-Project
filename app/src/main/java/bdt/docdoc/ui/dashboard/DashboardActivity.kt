@@ -114,7 +114,6 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
             }
 
 
-
         }
     }
 
@@ -134,15 +133,15 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
         adapter.addFragment(medicineFragment, Constants.FRAGMENT_PATIENT_MEDICINE)
 
         dashboardViewPager!!.adapter = adapter
-        dashboardViewPager!!.setCurrentItem(0)
+        dashboardViewPager!!.offscreenPageLimit = 4
+        dashboardViewPager!!.currentItem = 0
         dashboardViewPager!!.setOnTouchListener(object : View.OnTouchListener {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 return true
             }
         })
-
     }
-
+    
     override fun supportFragmentInjector(): AndroidInjector<Fragment> {
         return fragmentDispatchingAndroidInjector
     }

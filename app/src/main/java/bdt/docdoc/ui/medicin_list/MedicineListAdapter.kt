@@ -18,14 +18,16 @@ import org.w3c.dom.Text
 class MedicineListAdapter : RecyclerView.Adapter<MedicineListAdapter.ViewHolder> {
 
     var originalList: ArrayList<Medicine>
-    var filterList= ArrayList<Medicine>()
+    var filterList = ArrayList<Medicine>()
     var context: Context
+    var itemClickListener: ItemClickListener
 
-    constructor(baseContext: Context, list: ArrayList<Medicine>) {
+    constructor(baseContext: Context, list: ArrayList<Medicine>, itemClickListener: ItemClickListener) {
         this.originalList = list
         this.filterList.clear()
         this.filterList.addAll(list)
         this.context = baseContext
+        this.itemClickListener = itemClickListener
     }
 
 
@@ -90,10 +92,18 @@ class MedicineListAdapter : RecyclerView.Adapter<MedicineListAdapter.ViewHolder>
         if (holder != null) {
             holder.textMName.text = filterList[position].name
             holder.textMUrl.text = filterList[position].detail_url
-            holder.rltMedicine.setOnClickListener(View.OnClickListener {
 
+            holder.rltMedicine.tag = filterList[position]
+            holder.rltMedicine.setOnClickListener({
+
+                var medicine = it.tag as Medicine
+                itemClickListener.itemClick(medicine)
 
             })
         }
+    }
+
+    interface ItemClickListener {
+        fun itemClick(medicine: Medicine)
     }
 }

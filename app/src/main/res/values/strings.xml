@@ -24,6 +24,55 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="patient_home_map_description" >Patient Home Map Location with Simple Map Shortcut</string>
+    <string name="patient_home_map_description">Patient Home Map Location with Simple Map Shortcut</string>
 
+
+    <string-array name="array_day">
+        <item>1 Day</item>
+        <item>2 Day</item>
+        <item>3 Day</item>
+        <item>4 Day</item>
+        <item>5 Day</item>
+        <item>6 Day</item>
+        <item>7 Day</item>
+        <item>8 Day</item>
+        <item>9 Day</item>
+        <item>10 Day</item>
+        <item>11 Day</item>
+        <item>12 Day</item>
+        <item>13 Day</item>
+        <item>14 Day</item>
+        <item>15 Day</item>
+        <item>16 Day</item>
+        <item>17 Day</item>
+        <item>18 Day</item>
+        <item>19 Day</item>
+        <item>20 Day</item>
+        <item>21 Day</item>
+        <item>22 Day</item>
+        <item>23 Day</item>
+        <item>24 Day</item>
+        <item>25 Day</item>
+        <item>26 Day</item>
+        <item>27 Day</item>
+        <item>28 Day</item>
+        <item>29 Day</item>
+        <item>30 Day</item>
+        <item>31 Day</item>
+        <item>1 Month</item>
+        <item>2 Month</item>
+        <item>3 Month</item>
+    </string-array>
+    <string-array name="array_time_in_day">
+        <item>1 Time</item>
+        <item>2 Time</item>
+        <item>3 Time</item>
+        <item>4 Time</item>
+        <item>5 Time</item>
+        <item>6 Time</item>
+        <item>7 Time</item>
+        <item>8 Time</item>
+        <item>9 Time</item>
+        <item>10 Time</item>
+    </string-array>
 </resources>
