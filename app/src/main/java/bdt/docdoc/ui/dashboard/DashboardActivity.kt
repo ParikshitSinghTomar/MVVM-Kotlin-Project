@@ -14,6 +14,7 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.widget.SearchView
+import android.widget.Toast
 import bdt.docdoc.BR
 import bdt.docdoc.R
 import bdt.docdoc.common.BaseActivity
@@ -80,10 +81,20 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            Snackbar.make(view, "Are you want to sure to print this prescription.", Snackbar.LENGTH_LONG)
+                    .setAction("No", {
+
+                    })
+                    .setAction("Yes", {
+                        showPrescriptionScreen()
+                    }).show()
         }
 
+        fabAddPatient.setOnClickListener { view ->
+
+            showAddPatientDialog()
+
+        }
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
@@ -101,6 +112,17 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
 
     }
 
+    private fun showAddPatientDialog() {
+        Toast.makeText(baseContext,"You can add patient here.",Toast.LENGTH_SHORT).show()
+
+    }
+
+    private fun showPrescriptionScreen() {
+
+        dashboardViewPager.currentItem = 2
+
+    }
+
     private fun initTabs() {
         textViewTabHistory.setOnClickListener(this)
         textViewTabProfile.setOnClickListener(this)
@@ -112,21 +134,16 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
         when (v!!.id) {
             R.id.textViewTabVisit -> {
                 dashboardViewPager.currentItem = 0
-
             }
             R.id.textViewTabProfile -> {
-
                 dashboardViewPager.currentItem = 1
             }
             R.id.textViewTabMedicine -> {
                 dashboardViewPager.currentItem = 2
-
             }
             R.id.textViewTabHistory -> {
                 dashboardViewPager.currentItem = 3
             }
-
-
         }
     }
 
@@ -138,11 +155,11 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
 //        var profileFragment: PatientProfileFragment = PatientProfileFragment.newInstance()
         adapter.addFragment(profileFragment, Constants.FRAGMENT_PATIENT_PROFILE)
         //3
-//        var historyFragment: PatientHistoryFragment = PatientHistoryFragment.newInstance()
-        adapter.addFragment(historyFragment, Constants.FRAGMENT_PATIENT_HISTORY)
-        //4
 //        var medicineFragment: PatientMedicineFragment = PatientMedicineFragment.newInstance()
         adapter.addFragment(medicineFragment, Constants.FRAGMENT_PATIENT_MEDICINE)
+        //4
+//        var historyFragment: PatientHistoryFragment = PatientHistoryFragment.newInstance()
+        adapter.addFragment(historyFragment, Constants.FRAGMENT_PATIENT_HISTORY)
 
         dashboardViewPager!!.adapter = adapter
         dashboardViewPager!!.offscreenPageLimit = 4
@@ -262,6 +279,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
     override fun showDetails(response: PatientProfileDetails) {
         visitInfoFragment.loadSelectedPatientDetails(response)
         profileFragment.loadSelectedPatientDetails(response)
+        historyFragment.loadSelectedPatientDetails(response)
     }
 
     private fun initSearchView() {

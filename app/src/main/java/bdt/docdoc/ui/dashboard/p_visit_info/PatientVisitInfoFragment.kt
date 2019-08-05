@@ -7,6 +7,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 import bdt.docdoc.BR
 import bdt.docdoc.R
@@ -230,15 +232,24 @@ class PatientVisitInfoFragment : BaseFragment<FragmentPatientVisitInfoBinding, P
         refreshList()
     }
 
-    fun showPrecautionDialog() {
+    private fun showPrecautionDialog() {
         val dialog = Dialog(activity)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.activity_precautions)
         val editText = dialog.findViewById(R.id.editTextPrecaution) as EditText
+        val imageClose = dialog.findViewById(R.id.imageClose) as ImageView
+        imageClose.setOnClickListener({
+            dialog.dismiss()
+        })
         val yesBtn = dialog.findViewById(R.id.buttonSelect) as Button
         yesBtn.setOnClickListener {
             var text = editText.text.toString()
+            if (text.isNullOrEmpty()) {
+                editText.hint = "Please enter valid text."
+                editText.setHintTextColor(ContextCompat.getColor(baseContext, R.color.red))
+                return@setOnClickListener
+            }
             var precaution = Precaution()
             precaution.name = text
             precaution.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.PRECAUTION
@@ -253,4 +264,35 @@ class PatientVisitInfoFragment : BaseFragment<FragmentPatientVisitInfoBinding, P
         showPrecautionDialog()
     }
 
+    private fun showSymptomsDialog() {
+        val dialog = Dialog(activity)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.activity_precautions)
+        val editText = dialog.findViewById(R.id.editTextPrecaution) as EditText
+        val imageClose = dialog.findViewById(R.id.imageClose) as ImageView
+        imageClose.setOnClickListener({
+            dialog.dismiss()
+        })
+        val yesBtn = dialog.findViewById(R.id.buttonSelect) as Button
+        yesBtn.setOnClickListener {
+            var text = editText.text.toString()
+            if (text.isNullOrEmpty()) {
+                editText.hint = "Please enter valid text."
+                editText.setHintTextColor(ContextCompat.getColor(baseContext, R.color.red))
+                return@setOnClickListener
+            }
+            var symptom = Symptoms()
+            symptom.name = text
+            symptom.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.SYMPTOMS
+            symptomsList.add(symptom)
+            refreshList()
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
+    override fun addSymptom() {
+        showSymptomsDialog()
+    }
 }

@@ -124,6 +124,7 @@ class AdapterSymptoms : RecyclerView.Adapter<AdapterSymptoms.ViewHolder> {
                 ) {
                     Log.i("", "Add Symptoms Button")
                     Toast.makeText(baseContext, "Add Symptoms", Toast.LENGTH_SHORT).show()
+                    addSymptom()
                 } else if (tg.objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_PRECAUTION)
                 ) {
                     Log.i("", "Add Symptoms Button")
@@ -132,6 +133,10 @@ class AdapterSymptoms : RecyclerView.Adapter<AdapterSymptoms.ViewHolder> {
                 }
             }
         })
+    }
+
+    private fun addSymptom() {
+        listener.addSymptom()
     }
 
     fun addPrecaution() {

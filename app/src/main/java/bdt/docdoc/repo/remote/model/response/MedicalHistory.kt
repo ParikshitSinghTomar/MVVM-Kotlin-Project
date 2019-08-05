@@ -7,13 +7,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonPropertyOrder("date", "bp", "visit_id", "temp", "weight", "symptoms", "prescription_list", "precautions")
+@JsonPropertyOrder("date", "bp", "visit_id", "name", "age", "doctor_name","visibility", "temp", "weight", "symptoms", "prescription_list", "precautions")
 class MedicalHistory {
 
     @JsonProperty("date")
     @get:JsonProperty("date")
     @set:JsonProperty("date")
     var date: String? = null
+
+    @JsonProperty("visibility")
+    @get:JsonProperty("visibility")
+    @set:JsonProperty("visibility")
+    var visibility: Boolean = false
+
+
+    @JsonProperty("name")
+    @get:JsonProperty("name")
+    @set:JsonProperty("name")
+    var name: String? = null
+
+    @JsonProperty("doctor_name")
+    @get:JsonProperty("doctor_name")
+    @set:JsonProperty("doctor_name")
+    var doctorName: String? = null
+
+
+    @JsonProperty("age")
+    @get:JsonProperty("age")
+    @set:JsonProperty("age")
+    var age: Int? = null
+
+
     @JsonProperty("bp")
     @get:JsonProperty("bp")
     @set:JsonProperty("bp")

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp">
+
+
+        <TextView
+            android:id="@+id/textViewPatientName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Parikshit Singh Tomar"
+            android:textAllCaps="true"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textViewPatientName"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/textViewPatientName"
+            android:text="Age: 29" />
+
+        <TextView
+            android:id="@+id/textViewVisibility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/textViewWeight"
+            android:text="@string/show"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:textColor="@color/blue_light"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewBP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textViewAge"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/textViewAge"
+            android:text="B.P. 170" />
+
+        <TextView
+            android:id="@+id/textViewTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textViewBP"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/textViewBP"
+            android:text="Temprature: 99 Cel." />
+
+        <TextView
+            android:id="@+id/textViewWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textViewTemp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/textViewTemp"
+            android:text="Weight: 79 Kg" />
+
+        <TextView
+            android:id="@+id/textViewDoctorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewPatientName"
+            android:layout_below="@+id/textViewPatientName"
+            android:layout_marginTop="12dp"
+            android:text="Dr. Kumar Kumar"
+            android:textAllCaps="true"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textViewDoctorName"
+            android:layout_alignEnd="@+id/textViewWeight"
+            android:text="Sunday, 23rd July 2019" />
+
+        <TextView
+            android:id="@+id/imageViewHideInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/textViewDate"
+            android:layout_alignEnd="@id/textViewDate"
+            android:layout_alignStart="@id/textViewPatientName"
+            android:layout_alignTop="@id/textViewPatientName"
+            android:background="@color/shadow_black"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:text="@string/message_to_show_details">
+
+        </TextView>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

@@ -29,7 +29,7 @@
     "city": "New Delhi",
     "pincode": "110059",
     "state": "Delhi",
-    "hide_location":false,
+    "hide_location": false,
     "location": [
       28.6344401,
       77.0288536
@@ -38,7 +38,41 @@
   "hide_medical_history": false,
   "medical_history": [
     {
-      "date": "1564683505026",
+      "name": "Parikshit Singh Tomar",
+      "age": 29,
+      "visibility": true,
+      "doctor_name": "Dr. Kumar Kumar",
+      "date": "Friday, 24rd June 2019",
+      "bp": 102,
+      "visit_id": 121231,
+      "temp": 102,
+      "weight": 79,
+      "symptoms": [
+        "Cough from 7 days",
+        "Cold from 2 days",
+        "Fever from 1 days"
+      ],
+      "prescription_list": [
+        {
+          "medicine_name": "Paracetamol",
+          "days": 7,
+          "times_in_a_day": 3,
+          "remarks": "Only with water"
+        }
+      ],
+      "precautions": [
+        "Don't take cool water",
+        "Don't eat cold things like ice-cream etc",
+        "Don't drink alcohol",
+        "Don't smoke at all"
+      ]
+    },
+    {
+      "name": "Santosh Kumar Chaurasia",
+      "age": 27,
+      "visibility": false,
+      "doctor_name": "Dr. Kumar Kumar",
+      "date": "Friday, 24rd June 2019",
       "bp": 102,
       "visit_id": 121232,
       "temp": 102,

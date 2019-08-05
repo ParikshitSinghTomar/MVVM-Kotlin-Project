@@ -13,26 +13,43 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="30"
-            android:orientation="vertical">
+            android:layout_weight="30">
 
-            <SearchView
-                android:id="@+id/searchView"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="10" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerViewPatients"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="90"
-                android:visibility="visible" />
+                <SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10" />
 
-        </LinearLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerViewPatients"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="90"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabAddPatient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
+        </RelativeLayout>
 
 
         <RelativeLayout
@@ -56,8 +73,8 @@
                     android:layout_height="match_parent"
                     android:layout_margin="2dp"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:background="@android:color/white"
+                    android:gravity="center"
                     android:text="@string/p_visit_info" />
 
                 <TextView
@@ -66,8 +83,8 @@
                     android:layout_height="match_parent"
                     android:layout_margin="2dp"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:background="@android:color/white"
+                    android:gravity="center"
                     android:text="@string/p_profile" />
 
                 <TextView
@@ -78,7 +95,7 @@
                     android:layout_weight="1"
                     android:background="@android:color/white"
                     android:gravity="center"
-                    android:text="@string/p_medicine" />
+                    android:text="@string/p_print_prescription" />
 
                 <TextView
                     android:id="@+id/textViewTabHistory"
@@ -86,8 +103,8 @@
                     android:layout_height="match_parent"
                     android:layout_margin="2dp"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:background="@android:color/white"
+                    android:gravity="center"
                     android:text="@string/p_history" />
 
             </LinearLayout>

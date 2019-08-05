@@ -16,4 +16,5 @@ interface IVisitInfoAdaterBindListener {
     fun removeMedicine(medicineDescription: MedicineDescription)
     fun removePrecautions(precaution: Precaution)
     fun addPrecaution()
+    fun addSymptom()
 }

@@ -19,12 +19,15 @@
     <string name="not_null_mobile_no">Please provide valid mobile number.</string>
     <string name="p_profile">Profile</string>
     <string name="p_visit_info">Visit</string>
-    <string name="p_medicine">Medicine</string>
+    <string name="p_print_prescription">Prescription</string>
     <string name="p_history">History</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="patient_home_map_description">Patient Home Map Location with Simple Map Shortcut</string>
+    <string name="message_to_show_details">Please click on show to see details.</string>
+    <string name="hide">Hide</string>
+    <string name="show">Show</string>
 
 
     <string-array name="array_day">

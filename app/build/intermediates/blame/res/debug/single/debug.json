@@ -852,6 +852,10 @@
         "source": "/home/parikshit/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/58a85094865236ed993241fcaae60e43/res/drawable-hdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
+        "merged": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/res/merged/debug/layout_item_list_medical_history.xml.flat",
+        "source": "/opt/prsnl/android_workspace/DocDoc/app/src/main/res/layout/item_list_medical_history.xml"
+    },
+    {
         "merged": "/opt/prsnl/android_workspace/DocDoc/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_design_ic_visibility.png.flat",
         "source": "/home/parikshit/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/55be0d91104a90b2b7ae81ffc9dfd703/res/drawable-mdpi-v4/design_ic_visibility.png"
     },
