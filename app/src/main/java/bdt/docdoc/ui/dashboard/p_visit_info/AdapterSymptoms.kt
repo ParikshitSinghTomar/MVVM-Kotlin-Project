@@ -13,12 +13,14 @@ import bdt.docdoc.R
 import bdt.docdoc.repo.local.roomdb.entity.Medicine
 import bdt.docdoc.repo.remote.model.common.CommonObjectSymptomsDescription
 import bdt.docdoc.repo.remote.model.common.MedicineDescription
+import bdt.docdoc.repo.remote.model.common.Precaution
 import bdt.docdoc.repo.remote.model.common.Symptoms
 
 /**
  * Created by parikshit on 25/7/19.
  */
 class AdapterSymptoms : RecyclerView.Adapter<AdapterSymptoms.ViewHolder> {
+
 
     var listSymptoms = arrayListOf<CommonObjectSymptomsDescription>()
 
@@ -53,7 +55,10 @@ class AdapterSymptoms : RecyclerView.Adapter<AdapterSymptoms.ViewHolder> {
                 listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.HEAD_MEDICINE) ||
                 listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.SYMPTOMS) ||
                 listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_SYMPTOMS) ||
-                listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_MEDICINE)) {
+                listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_MEDICINE) ||
+                listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.PRECAUTION) ||
+                listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.HEAD_PRECAUTION) ||
+                listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_PRECAUTION)) {
             holder.editRemarks.visibility = View.GONE
             holder.spinnerDays.visibility = View.GONE
             holder.spinnerTime.visibility = View.GONE
@@ -64,15 +69,21 @@ class AdapterSymptoms : RecyclerView.Adapter<AdapterSymptoms.ViewHolder> {
             holder.spinnerTime.visibility = View.VISIBLE
             holder.btnClose.visibility = View.VISIBLE
         }
-        if (listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.SYMPTOMS)) {
+
+        if (listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.SYMPTOMS) ||
+                listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.MEDICINE) ||
+                listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.PRECAUTION)) {
             holder.btnClose.visibility = View.VISIBLE
         }
+
         if (listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.HEAD_SYMPTOMS) ||
-                listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.HEAD_MEDICINE)) {
+                listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.HEAD_MEDICINE) ||
+                listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.HEAD_PRECAUTION)) {
             holder!!.rltListItemShipment.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.colorAccent))
             holder!!.textViewSymptoms.setTextColor(ContextCompat.getColor(baseContext, R.color.white))
         } else if (listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_SYMPTOMS) ||
-                listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_MEDICINE)) {
+                listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_MEDICINE) ||
+                listSymptoms[position].objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_PRECAUTION)) {
             holder!!.rltListItemShipment.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.blue_light))
             holder!!.textViewSymptoms.setTextColor(ContextCompat.getColor(baseContext, R.color.white))
         } else {
@@ -92,6 +103,10 @@ class AdapterSymptoms : RecyclerView.Adapter<AdapterSymptoms.ViewHolder> {
                 ) {
                     Log.i("", "Remove Medicine Button")
                     listener.removeMedicine(tg as MedicineDescription)
+                } else if (tg.objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.PRECAUTION)
+                ) {
+                    Log.i("", "Remove Precaution Button")
+                    listener.removePrecautions(tg as Precaution)
                 }
             }
         })
@@ -109,18 +124,18 @@ class AdapterSymptoms : RecyclerView.Adapter<AdapterSymptoms.ViewHolder> {
                 ) {
                     Log.i("", "Add Symptoms Button")
                     Toast.makeText(baseContext, "Add Symptoms", Toast.LENGTH_SHORT).show()
+                } else if (tg.objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_PRECAUTION)
+                ) {
+                    Log.i("", "Add Symptoms Button")
+                    Toast.makeText(baseContext, "Add Precaution", Toast.LENGTH_SHORT).show()
+                    addPrecaution()
                 }
-//                else if (tg.objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.MEDICINE)
-//                ) {
-//                    Log.i("", "Add/Delete Medicine Row")
-//                    Toast.makeText(baseContext, "Add/Delete Medicine Row", Toast.LENGTH_SHORT).show()
-//                } else if (tg.objectType.equals(CommonObjectSymptomsDescription.OBJECT_TYPE.SYMPTOMS)
-//                ) {
-//                    Log.i("", "Add/Delete Symptoms Row")
-//                    Toast.makeText(baseContext, "Add/Delete Symptoms Row", Toast.LENGTH_SHORT).show()
-//                }
             }
         })
+    }
+
+    fun addPrecaution() {
+        listener.addPrecaution()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

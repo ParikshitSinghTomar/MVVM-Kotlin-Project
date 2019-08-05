@@ -11,8 +11,12 @@ import dagger.Provides
 class PatientFragmentModule {
 
     @Provides
-    fun providesPatientVisitInfoViewModel(iDataManager: IDataManager):PatientVisitInfoViewModel{
+    fun providesPatientVisitInfoViewModel(iDataManager: IDataManager): PatientVisitInfoViewModel {
         return PatientVisitInfoViewModel(iDataManager)
     }
 
+    @Provides
+    fun providesPatientVisitInfoFragment(): PatientVisitInfoFragment {
+        return PatientVisitInfoFragment.newInstance()
+    }
 }

@@ -16,6 +16,7 @@ MERGED from [com.android.support:support-v4:26.1.0] /home/parikshit/.gradle/cach
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/parikshit/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/dcff734c4d031299e2339d3dce2b67ba/AndroidManifest.xml:2:1-11:12
 MERGED from [android.arch.persistence.room:runtime:1.1.1] /home/parikshit/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/1e8da504584b1cc37fc54ada50296c2e/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:extensions:1.1.1] /home/parikshit/.gradle/caches/transforms-1/files-1.1/extensions-1.1.1.aar/c91499692d09656b9d2f1bd645ff6241/AndroidManifest.xml:17:1-30:12
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/glide-4.9.0.aar/9a762ea37142334163e51bbdb22311c6/AndroidManifest.xml:2:1-12:12
 MERGED from [com.android.support:recyclerview-v7:26.1.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/7f40c6715e4d787b8b11813012a1adc1/AndroidManifest.xml:17:1-28:12
 MERGED from [android.arch.persistence:db-framework:1.1.1] /home/parikshit/.gradle/caches/transforms-1/files-1.1/db-framework-1.1.1.aar/c8b3663e363d7deb4bd1833b62d63477/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.persistence:db:1.1.1] /home/parikshit/.gradle/caches/transforms-1/files-1.1/db-1.1.1.aar/5abef2a3546ebc5f96e3ee7da18e1954/AndroidManifest.xml:17:1-22:12
@@ -32,6 +33,7 @@ MERGED from [com.android.support:support-compat:26.1.0] /home/parikshit/.gradle/
 MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/parikshit/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/869244cc80a9f9537ba1471641ffb287/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/parikshit/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/8b72d8e28686bf0abb31a50de9542b0d/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0-alpha01] /home/parikshit/.gradle/caches/transforms-1/files-1.1/lifecycle-viewmodel-2.2.0-alpha01.aar/93e0793cfd2471ac5c3d1b01c983d344/AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.9.0.aar/7252d0dade758b2298923ec6790ee49f/AndroidManifest.xml:2:1-11:12
 INJECTED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:2:1-41:12
 INJECTED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:2:1-41:12
 INJECTED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:2:1-41:12
@@ -87,6 +89,8 @@ MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/parik
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/parikshit/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/dcff734c4d031299e2339d3dce2b67ba/AndroidManifest.xml:9:5-20
 MERGED from [android.arch.lifecycle:extensions:1.1.1] /home/parikshit/.gradle/caches/transforms-1/files-1.1/extensions-1.1.1.aar/c91499692d09656b9d2f1bd645ff6241/AndroidManifest.xml:22:5-28:19
 MERGED from [android.arch.lifecycle:extensions:1.1.1] /home/parikshit/.gradle/caches/transforms-1/files-1.1/extensions-1.1.1.aar/c91499692d09656b9d2f1bd645ff6241/AndroidManifest.xml:22:5-28:19
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/glide-4.9.0.aar/9a762ea37142334163e51bbdb22311c6/AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/glide-4.9.0.aar/9a762ea37142334163e51bbdb22311c6/AndroidManifest.xml:10:5-20
 MERGED from [com.android.support:recyclerview-v7:26.1.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/7f40c6715e4d787b8b11813012a1adc1/AndroidManifest.xml:22:5-26:19
 MERGED from [com.android.support:recyclerview-v7:26.1.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/7f40c6715e4d787b8b11813012a1adc1/AndroidManifest.xml:22:5-26:19
 MERGED from [com.android.support:support-fragment:26.1.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/ed92b5bcaf68134f33f5850b97c6b340/AndroidManifest.xml:25:5-29:19
@@ -103,6 +107,8 @@ MERGED from [com.android.support:support-vector-drawable:26.1.0] /home/parikshit
 MERGED from [com.android.support:support-vector-drawable:26.1.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/8b0a570fc9a9bf7369dc6501c73b82ab/AndroidManifest.xml:22:5-26:19
 MERGED from [com.android.support:support-compat:26.1.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/f933778aac7858b6be0f3f8ddc50c3e4/AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:support-compat:26.1.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/f933778aac7858b6be0f3f8ddc50c3e4/AndroidManifest.xml:25:5-29:19
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.9.0.aar/7252d0dade758b2298923ec6790ee49f/AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.9.0.aar/7252d0dade758b2298923ec6790ee49f/AndroidManifest.xml:9:5-20
 	android:supportsRtl
 		ADDED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml:18:9-35
 	android:label
@@ -183,6 +189,8 @@ MERGED from [android.arch.persistence.room:runtime:1.1.1] /home/parikshit/.gradl
 MERGED from [android.arch.persistence.room:runtime:1.1.1] /home/parikshit/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/1e8da504584b1cc37fc54ada50296c2e/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:extensions:1.1.1] /home/parikshit/.gradle/caches/transforms-1/files-1.1/extensions-1.1.1.aar/c91499692d09656b9d2f1bd645ff6241/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:extensions:1.1.1] /home/parikshit/.gradle/caches/transforms-1/files-1.1/extensions-1.1.1.aar/c91499692d09656b9d2f1bd645ff6241/AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/glide-4.9.0.aar/9a762ea37142334163e51bbdb22311c6/AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/glide-4.9.0.aar/9a762ea37142334163e51bbdb22311c6/AndroidManifest.xml:6:5-8:41
 MERGED from [com.android.support:recyclerview-v7:26.1.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/7f40c6715e4d787b8b11813012a1adc1/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:recyclerview-v7:26.1.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/7f40c6715e4d787b8b11813012a1adc1/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.persistence:db-framework:1.1.1] /home/parikshit/.gradle/caches/transforms-1/files-1.1/db-framework-1.1.1.aar/c8b3663e363d7deb4bd1833b62d63477/AndroidManifest.xml:20:5-44
@@ -215,6 +223,8 @@ MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/parikshit/.gradle/cac
 MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/parikshit/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/8b72d8e28686bf0abb31a50de9542b0d/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0-alpha01] /home/parikshit/.gradle/caches/transforms-1/files-1.1/lifecycle-viewmodel-2.2.0-alpha01.aar/93e0793cfd2471ac5c3d1b01c983d344/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0-alpha01] /home/parikshit/.gradle/caches/transforms-1/files-1.1/lifecycle-viewmodel-2.2.0-alpha01.aar/93e0793cfd2471ac5c3d1b01c983d344/AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.9.0.aar/7252d0dade758b2298923ec6790ee49f/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /home/parikshit/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.9.0.aar/7252d0dade758b2298923ec6790ee49f/AndroidManifest.xml:5:5-7:41
 INJECTED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml
 INJECTED from /opt/prsnl/android_workspace/DocDoc/app/src/main/AndroidManifest.xml
 	tools:overrideLibrary

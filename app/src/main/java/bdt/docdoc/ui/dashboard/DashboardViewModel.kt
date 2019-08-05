@@ -5,8 +5,10 @@ import bdt.docdoc.common.BaseViewModel
 import bdt.docdoc.repo.IDataManager
 import bdt.docdoc.repo.local.roomdb.entity.Patient
 import bdt.docdoc.repo.remote.model.request.PatientListRequest
+import bdt.docdoc.repo.remote.model.request.PatientTodayVisitDetailRequest
 import bdt.docdoc.repo.remote.model.response.PatientListResponse
 import bdt.docdoc.repo.remote.model.response.PatientResponse
+import bdt.docdoc.ui.dashboard.p_visit_info.IPatientVisitInfoNavigator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -21,7 +23,7 @@ class DashboardViewModel : BaseViewModel {
         this.iDataManager = iDataManager
     }
 
-    fun initPatientView() {
+    fun loadPatientList() {
 
         viewModelScope.launch(Dispatchers.IO) {
             var user = iDataManager.getCurrentUser()
@@ -58,6 +60,7 @@ class DashboardViewModel : BaseViewModel {
                         patient.patientID,
                         patient.name,
                         patient.address,
+                        patient.profileUrl,
                         patient.email,
                         patient.age,
                         patient.mobileNo,
@@ -74,5 +77,25 @@ class DashboardViewModel : BaseViewModel {
 
         }
     }
+
+    fun loadPatientDetails(patient: Patient) {
+        viewModelScope.launch(Dispatchers.IO) {
+            var patientTodayVisitDetailRequest = PatientTodayVisitDetailRequest()
+            patientTodayVisitDetailRequest.docID = 1
+            patientTodayVisitDetailRequest.patientID = patient.patient_id
+            patientTodayVisitDetailRequest.patientVisitID = patient.visit_id
+            var response = iDataManager.getPatientTodayVisitDetail(patientTodayVisitDetailRequest/*patientTodayVisitDetailRequest=PatientTodayVisitDetailRequest()*/)
+
+            viewModelScope.launch(Dispatchers.Main) {
+                if (response.status!!) {
+                    (getNavigator() as IDashboardNavigator).showDetails(response)
+                } else {
+                    var errors = response.errors
+                    (getNavigator() as IDashboardNavigator).showError(errors!!)
+                }
+            }
+        }
+    }
+
 
 }

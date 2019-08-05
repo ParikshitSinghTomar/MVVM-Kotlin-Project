@@ -13,6 +13,7 @@ data class Patient(@PrimaryKey
                    @ColumnInfo(name = "patient_id") var patient_id: Int,
                    @ColumnInfo(name = "name") var name: String
                    , @ColumnInfo(name = "address") var address: String
+                   , @ColumnInfo(name = "profileUrl") var profileUrl: String
                    , @ColumnInfo(name = "email") var email: String
                    , @ColumnInfo(name = "age") var age: Int
                    , @ColumnInfo(name = "mobileNo") var mobileNo: String

@@ -78,7 +78,7 @@ class RestAPIHelper : IRestAPIHelper {
 
     }
 
-    override fun getPatientTodayVisitDetail(patientTodayVisitDetailRequest: PatientTodayVisitDetailRequest): PatientTodayVisitDetailResponse {
+    override fun getPatientTodayVisitDetail(patientTodayVisitDetailRequest: PatientTodayVisitDetailRequest): PatientProfileDetails {
         val url = BuildConfig.BASE_URL + "patientTodayVisit"
         var error = "NoError"
         try {
@@ -89,7 +89,7 @@ class RestAPIHelper : IRestAPIHelper {
             error = e.message!!
             e.printStackTrace()
         }
-        var response = PatientTodayVisitDetailResponse()
+        var response = PatientProfileDetails()
         response.errors = error
         return response
     }

@@ -72,7 +72,7 @@ class DataManager : IDataManager {
         iRoomDBHelper.savePatient(patientEntityList)
     }
 
-    override fun getPatientTodayVisitDetail(patientTodayVisitDetailRequest: PatientTodayVisitDetailRequest): PatientTodayVisitDetailResponse {
+    override fun getPatientTodayVisitDetail(patientTodayVisitDetailRequest: PatientTodayVisitDetailRequest): PatientProfileDetails {
         return iRestAPIHelper.getPatientTodayVisitDetail(patientTodayVisitDetailRequest)
     }
 

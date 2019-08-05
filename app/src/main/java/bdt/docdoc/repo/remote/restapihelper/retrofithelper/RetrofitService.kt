@@ -26,7 +26,7 @@ interface RetrofitService {
     fun fetchPatientList(@Url url: String, @Body request: PatientListRequest): Single<PatientListResponse>
 
     @POST
-    fun fetchPatientTodayVisitDetail(@Url url: String, @Body request: PatientTodayVisitDetailRequest): Single<PatientTodayVisitDetailResponse>
+    fun fetchPatientTodayVisitDetail(@Url url: String, @Body request: PatientTodayVisitDetailRequest): Single<PatientProfileDetails>
 
 
     @POST

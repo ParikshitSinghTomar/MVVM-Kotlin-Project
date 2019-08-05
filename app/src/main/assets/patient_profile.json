@@ -1,0 +1,67 @@
+{
+  "status": true,
+  "message": "Profile successfully fetched",
+  "name": "Parikshit Singh Tomar",
+  "today_visit": {
+    "bp": 102,
+    "temp": 102,
+    "weight": 79,
+    "symptoms": [
+      "Cough from 7 days",
+      "Cold from 2 days",
+      "Fever from 1 days"
+    ]
+  },
+  "email": "parikshitsinghtomar1857@gmail.com",
+  "hide_email": false,
+  "phone_no": "9910112332",
+  "profile_url": "https://lh3.googleusercontent.com/a-/AAuE7mDsu5Fcq3Lbst02QKmA0_vHXX0TjrV0WKF5Dz24GA=s96",
+  "basic_medical_report": [
+    "Allergy From Sugar",
+    "Stone in Bladder",
+    "Two operation already done for Stone",
+    "Asthma from last 25 years"
+  ],
+  "address": {
+    "hide": false,
+    "line1": "H.No. 142B, Sanik Enclave Sector-3",
+    "line2": "Mohan Gardon, Uttam Nagar",
+    "city": "New Delhi",
+    "pincode": "110059",
+    "state": "Delhi",
+    "hide_location":false,
+    "location": [
+      28.6344401,
+      77.0288536
+    ]
+  },
+  "hide_medical_history": false,
+  "medical_history": [
+    {
+      "date": "1564683505026",
+      "bp": 102,
+      "visit_id": 121232,
+      "temp": 102,
+      "weight": 79,
+      "symptoms": [
+        "Cough from 7 days",
+        "Cold from 2 days",
+        "Fever from 1 days"
+      ],
+      "prescription_list": [
+        {
+          "medicine_name": "Paracetamol",
+          "days": 7,
+          "times_in_a_day": 3,
+          "remarks": "Only with water"
+        }
+      ],
+      "precautions": [
+        "Don't take cool water",
+        "Don't eat cold things like ice-cream etc",
+        "Don't drink alcohol",
+        "Don't smoke at all"
+      ]
+    }
+  ]
+}

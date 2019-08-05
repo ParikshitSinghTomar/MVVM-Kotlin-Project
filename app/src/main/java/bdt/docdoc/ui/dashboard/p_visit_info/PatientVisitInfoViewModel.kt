@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import bdt.docdoc.common.BaseViewModel
 import bdt.docdoc.repo.DataManager
 import bdt.docdoc.repo.IDataManager
+import bdt.docdoc.repo.local.roomdb.entity.Patient
 import bdt.docdoc.repo.remote.model.request.PatientTodayVisitDetailRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,20 +20,5 @@ class PatientVisitInfoViewModel : BaseViewModel {
         this.iDataManager = iDataManager
     }
 
-    fun getPatientDetails() {
-        viewModelScope.launch(Dispatchers.IO) {
-            var patientTodayVisitDetailRequest = PatientTodayVisitDetailRequest()
-            var response = iDataManager.getPatientTodayVisitDetail(patientTodayVisitDetailRequest/*patientTodayVisitDetailRequest=PatientTodayVisitDetailRequest()*/)
-
-            viewModelScope.launch(Dispatchers.Main) {
-                if (response.status) {
-                    (getNavigator() as IPatientVisitInfoNavigator).showDetails(response)
-                } else {
-                    var errors = response.errors
-                    (getNavigator() as IPatientVisitInfoNavigator).showError(errors)
-                }
-            }
-        }
-    }
 
 }

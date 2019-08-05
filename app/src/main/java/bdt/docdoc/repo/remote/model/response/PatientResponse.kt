@@ -31,6 +31,9 @@ class PatientResponse {
     @JsonProperty(value = "mobileNo")
     var mobileNo= EMPTY_STRING
 
+    @JsonProperty(value = "profileUrl")
+    var profileUrl= EMPTY_STRING
+
     @JsonProperty(value = "visit_count")
     var visit_count= 0
 

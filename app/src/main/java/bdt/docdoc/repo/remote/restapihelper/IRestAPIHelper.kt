@@ -18,7 +18,7 @@ interface IRestAPIHelper {
 
     fun patientService(request: PatientListRequest): PatientListResponse
 
-    fun getPatientTodayVisitDetail(patientTodayVisitDetailRequest: PatientTodayVisitDetailRequest): PatientTodayVisitDetailResponse
+    fun getPatientTodayVisitDetail(patientTodayVisitDetailRequest: PatientTodayVisitDetailRequest): PatientProfileDetails
 
     fun getMedicineList(): MedicineListResponse
 }

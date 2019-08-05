@@ -1,15 +1,19 @@
 package bdt.docdoc.ui.dashboard
 
 import android.content.Context
+import android.support.constraint.ConstraintLayout
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import android.widget.ImageView
 import android.widget.TextView
 import bdt.docdoc.R
 import bdt.docdoc.repo.local.roomdb.entity.Patient
+import com.bumptech.glide.Glide
 
 /**
  * Created by parikshit on 15/7/19.
@@ -19,19 +23,23 @@ class PatientAdapter : RecyclerView.Adapter<PatientAdapter.ViewHolder>, Filterab
 
     //no need of lateint if we are using construtor to initialize objects
     /*lateinit */
+    var selectPatientPosition = -1
     var patientList = arrayListOf<Patient>()
     var filterPatientList = arrayListOf<Patient>()
     var context: Context
     var FILTER: PatientFilter? = null
+    var listener: PatientItemClickListener
 
-    constructor(context: Context) {
+    constructor(context: Context, listener: PatientItemClickListener) {
         this.context = context
+        this.listener = listener
     }
 
     fun setPatientList(patientList: List<Patient>) {
         this.patientList.addAll(patientList)
         this.filterPatientList = arrayListOf()
         this.filterPatientList.addAll(this.patientList)
+        this.selectPatientPosition = this.filterPatientList.size - 1
     }
 
 
@@ -79,7 +87,7 @@ class PatientAdapter : RecyclerView.Adapter<PatientAdapter.ViewHolder>, Filterab
                 filterPatientList.clear()
             }
 
-            filterPatientList=results!!.values as ArrayList<Patient>
+            filterPatientList = results!!.values as ArrayList<Patient>
             notifyDataSetChanged()
         }
 
@@ -87,11 +95,36 @@ class PatientAdapter : RecyclerView.Adapter<PatientAdapter.ViewHolder>, Filterab
 
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        holder!!.textViewName.text = patientList.get(position).name
-        holder!!.textViewAddress.text = patientList.get(position).address
-        holder!!.textViewEmail.text = patientList.get(position).age.toString()
-        holder!!.textViewMobileNo.text = patientList.get(position).mobileNo
+        holder!!.textViewName.text = patientList[position].name
+        holder!!.textViewAddress.text = patientList[position].address
+        holder!!.textViewEmail.text = patientList[position].age.toString()
+        holder!!.textViewMobileNo.text = patientList[position].mobileNo
+        loadImage(holder, position)
+        if (patientList[position].visit_done) {
+            holder.imageViewVisitStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.green))
+        } else {
+            holder.imageViewVisitStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.red))
+        }
+        if (position == selectPatientPosition) {
+            holder.imageViewVisitStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.yellow))
+        }
+        holder.cnsrntLayout.tag = position
+        holder.cnsrntLayout.setOnClickListener({
 
+            selectPatientPosition = it.tag as Int
+            patientList[selectPatientPosition].visit_done = true
+            var selectedPatient = patientList[selectPatientPosition]
+            notifyDataSetChanged()
+            listener.onItemClicked(selectedPatient)
+        })
+    }
+
+    private fun loadImage(holder: ViewHolder?, position: Int) {
+        Glide
+                .with(context)
+                .load(patientList[position].profileUrl)
+                .centerCrop()
+                .into(holder!!.imageViewProfile)
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -100,6 +133,13 @@ class PatientAdapter : RecyclerView.Adapter<PatientAdapter.ViewHolder>, Filterab
         var textViewAddress: TextView = view.findViewById(R.id.textViewPatientAddress)
         var textViewEmail: TextView = view.findViewById(R.id.textViewPatientEmail)
         var textViewMobileNo: TextView = view.findViewById(R.id.textViewPatientMobileNo)
+        var imageViewVisitStatus: ImageView = view.findViewById(R.id.imageViewVisitStatus)
+        var cnsrntLayout: ConstraintLayout = view.findViewById(R.id.cnsrntLayout)
+        var imageViewProfile: ImageView = view.findViewById(R.id.imageViewProfile)
 
+    }
+
+    interface PatientItemClickListener {
+        fun onItemClicked(patient: Patient);
     }
 }

@@ -7,11 +7,14 @@ import bdt.docdoc.common.Constants
  */
 open class CommonObjectSymptomsDescription {
 
-    var name=Constants.EMPTY_STRING
+    var name = Constants.EMPTY_STRING
 
-    var objectType=OBJECT_TYPE.NONE
+    var objectType = OBJECT_TYPE.NONE
 
     enum class OBJECT_TYPE {
-       NONE, HEAD_SYMPTOMS,SYMPTOMS,HEAD_MEDICINE,MEDICINE,ADD_SYMPTOMS,ADD_MEDICINE
+        NONE,
+        HEAD_SYMPTOMS, SYMPTOMS, ADD_SYMPTOMS,
+        HEAD_MEDICINE, MEDICINE, ADD_MEDICINE,
+        HEAD_PRECAUTION, PRECAUTION, ADD_PRECAUTION
     }
 }

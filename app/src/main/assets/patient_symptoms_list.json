@@ -1,8 +1,0 @@
-{
-  "status":true,
-  "message":"Symptoms successfully fetched",
-  "bp":102,
-  "temp":102,
-  "symptoms":["Cough from 7 days","Cold from 2 days","Fever from 1 days"]
-
-}

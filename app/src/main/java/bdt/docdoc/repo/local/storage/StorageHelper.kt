@@ -58,10 +58,10 @@ class StorageHelper : IStorageHelper, IRestAPIHelper {
         return response
     }
 
-    override fun getPatientTodayVisitDetail(patientTodayVisitDetailRequest: PatientTodayVisitDetailRequest): PatientTodayVisitDetailResponse {
+    override fun getPatientTodayVisitDetail(patientTodayVisitDetailRequest: PatientTodayVisitDetailRequest): PatientProfileDetails {
 
-        val content = loadFromAssets("patient_symptoms_list.json")
-        var response = ObjectMapper().readValue(content, PatientTodayVisitDetailResponse::class.java)
+        val content = loadFromAssets("patient_profile.json")
+        var response = ObjectMapper().readValue(content, PatientProfileDetails::class.java)
         return response
 
     }

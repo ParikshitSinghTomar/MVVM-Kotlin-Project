@@ -20,10 +20,13 @@ import bdt.docdoc.common.BaseActivity
 import bdt.docdoc.common.Constants
 import bdt.docdoc.databinding.ActivityDashboardBinding
 import bdt.docdoc.repo.local.roomdb.entity.Patient
+import bdt.docdoc.repo.remote.model.response.PatientProfileDetails
+import bdt.docdoc.repo.remote.model.response.PatientTodayVisitDetailResponse
 import bdt.docdoc.ui.dashboard.p_history.PatientHistoryFragment
 import bdt.docdoc.ui.dashboard.p_medicine.PatientMedicineFragment
 import bdt.docdoc.ui.dashboard.p_profile.PatientProfileFragment
 import bdt.docdoc.ui.dashboard.p_visit_info.PatientVisitInfoFragment
+import bdt.docdoc.util.PatientListSorter
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
@@ -35,7 +38,8 @@ import javax.inject.Inject
 /**
  * Created by parikshit on 13/7/19.
  */
-class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewModel>(), IDashboardNavigator, NavigationView.OnNavigationItemSelectedListener, HasSupportFragmentInjector, View.OnClickListener {
+class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewModel>(), IDashboardNavigator, NavigationView.OnNavigationItemSelectedListener, HasSupportFragmentInjector, View.OnClickListener, PatientAdapter.PatientItemClickListener {
+
 
     companion object {
 
@@ -52,6 +56,15 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
     @Inject
     lateinit var mDashboardViewModel: DashboardViewModel
 
+    @Inject
+    lateinit var visitInfoFragment: PatientVisitInfoFragment
+    @Inject
+    lateinit var profileFragment: PatientProfileFragment
+    @Inject
+    lateinit var historyFragment: PatientHistoryFragment
+    @Inject
+    lateinit var medicineFragment: PatientMedicineFragment
+
     lateinit var mBinding: ActivityDashboardBinding
     lateinit var context: Context
     var patientEntityList = arrayListOf<Patient>()
@@ -63,7 +76,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
         mBinding = getViewDataBinding()!!
         mBinding.viewModel = mDashboardViewModel
         mDashboardViewModel.setNavigator(this)
-        mAdapter = PatientAdapter(context)
+        mAdapter = PatientAdapter(context, this)
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
@@ -80,7 +93,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
 
         initSearchView()
 
-        mDashboardViewModel.initPatientView()
+        mDashboardViewModel.loadPatientList()
 
         initTabs()
 
@@ -120,16 +133,15 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
     fun setUpViewPager() {
         val adapter = DashboardFragmentPagerAdapter(getSupportFragmentManager())
         //1
-        var visitInfoFragment: PatientVisitInfoFragment = PatientVisitInfoFragment.newInstance()
         adapter.addFragment(visitInfoFragment, Constants.FRAGMENT_PATIENT_INFO)
         //2
-        var profileFragment: PatientProfileFragment = PatientProfileFragment.newInstance()
+//        var profileFragment: PatientProfileFragment = PatientProfileFragment.newInstance()
         adapter.addFragment(profileFragment, Constants.FRAGMENT_PATIENT_PROFILE)
         //3
-        var historyFragment: PatientHistoryFragment = PatientHistoryFragment.newInstance()
+//        var historyFragment: PatientHistoryFragment = PatientHistoryFragment.newInstance()
         adapter.addFragment(historyFragment, Constants.FRAGMENT_PATIENT_HISTORY)
         //4
-        var medicineFragment: PatientMedicineFragment = PatientMedicineFragment.newInstance()
+//        var medicineFragment: PatientMedicineFragment = PatientMedicineFragment.newInstance()
         adapter.addFragment(medicineFragment, Constants.FRAGMENT_PATIENT_MEDICINE)
 
         dashboardViewPager!!.adapter = adapter
@@ -141,7 +153,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
             }
         })
     }
-    
+
     override fun supportFragmentInjector(): AndroidInjector<Fragment> {
         return fragmentDispatchingAndroidInjector
     }
@@ -228,6 +240,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
     }
 
     override fun showPatientList(pList: ArrayList<Patient>) {
+
         refreshPatientList(pList);
         recyclerViewPatients.layoutManager = LinearLayoutManager(context)
         recyclerViewPatients.adapter = mAdapter
@@ -238,9 +251,17 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
         if (patientEntityList.size != null) {
             patientEntityList.clear()
         }
-        patientEntityList.addAll(pList)
+        var pListSorted = PatientListSorter.sort(pList, PatientListSorter.TECHNIQUE.PATIENT_ID)
+        patientEntityList.addAll(pListSorted)
         mAdapter!!.setPatientList(patientEntityList)
         mAdapter!!.notifyDataSetChanged()
+        //refresh patient details in all fragments
+        mDashboardViewModel.loadPatientDetails(patientEntityList[patientEntityList.size - 1])
+    }
+
+    override fun showDetails(response: PatientProfileDetails) {
+        visitInfoFragment.loadSelectedPatientDetails(response)
+        profileFragment.loadSelectedPatientDetails(response)
     }
 
     private fun initSearchView() {
@@ -259,4 +280,14 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
         })
     }
 
+    override fun onItemClicked(patient: Patient) {
+
+        showToast("$patient.name selected")
+        loadPatientDetails(patient)
+
+    }
+
+    private fun loadPatientDetails(patient: Patient) {
+        mDashboardViewModel.loadPatientDetails(patient)
+    }
 }

@@ -1,6 +1,7 @@
 package bdt.docdoc.ui.dashboard.p_visit_info
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -10,6 +11,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
+import android.widget.EditText
 import android.widget.LinearLayout
 import bdt.docdoc.BR
 import bdt.docdoc.R
@@ -17,11 +21,15 @@ import bdt.docdoc.common.BaseFragment
 import bdt.docdoc.common.Constants
 import bdt.docdoc.databinding.FragmentPatientVisitInfoBinding
 import bdt.docdoc.repo.local.roomdb.entity.Medicine
+import bdt.docdoc.repo.local.roomdb.entity.Patient
 import bdt.docdoc.repo.remote.model.common.CommonObjectSymptomsDescription
 import bdt.docdoc.repo.remote.model.common.MedicineDescription
+import bdt.docdoc.repo.remote.model.common.Precaution
 import bdt.docdoc.repo.remote.model.common.Symptoms
+import bdt.docdoc.repo.remote.model.response.PatientProfileDetails
 import bdt.docdoc.repo.remote.model.response.PatientTodayVisitDetailResponse
 import bdt.docdoc.ui.medicin_list.ActivityMedicineList
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_patient_visit_info.*
 import javax.inject.Inject
 
@@ -40,6 +48,7 @@ class PatientVisitInfoFragment : BaseFragment<FragmentPatientVisitInfoBinding, P
 
     private var medicineList = ArrayList<CommonObjectSymptomsDescription>()
     private var symptomsList = ArrayList<CommonObjectSymptomsDescription>()
+    private var precautionsList = ArrayList<CommonObjectSymptomsDescription>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,10 +63,7 @@ class PatientVisitInfoFragment : BaseFragment<FragmentPatientVisitInfoBinding, P
         mBinding = getViewDataBinding()
         mBinding!!.viewModel = mViewModel
         mViewModel.setNavigator(this)
-        mViewModel.getPatientDetails()
-
     }
-
 
     override fun executePendingBindings() {
 
@@ -94,13 +100,18 @@ class PatientVisitInfoFragment : BaseFragment<FragmentPatientVisitInfoBinding, P
 
 
     companion object {
+        val fragment = PatientVisitInfoFragment()
         fun newInstance(): PatientVisitInfoFragment {
-            val fragment = PatientVisitInfoFragment()
             return fragment
         }
     }
 
-    override fun showDetails(response: PatientTodayVisitDetailResponse) {
+    override fun loadSelectedPatientDetails(response: PatientProfileDetails) {
+
+        showBasicInfo(response)
+        symptomsList.clear()
+        medicineList.clear()
+        precautionsList.clear()
         createSymptomsList(response)
         var visitList = getRefreshedList()
         adapterSymptoms = AdapterSymptoms(visitList, baseContext as Context, this)
@@ -109,8 +120,21 @@ class PatientVisitInfoFragment : BaseFragment<FragmentPatientVisitInfoBinding, P
         adapterSymptoms!!.notifyDataSetChanged()
     }
 
-    private fun createSymptomsList(response: PatientTodayVisitDetailResponse) {
-        for (symptomName in response.symptoms) {
+    private fun showBasicInfo(response: PatientProfileDetails) {
+        Glide
+                .with(context)
+                .load(response.profileUrl)
+                .centerCrop()
+                .into(mBinding!!.imageViewProfile)
+        mBinding!!.textViewPatientName.text = response.name
+        mBinding!!.textViewPatientTemp.text = "Temprature: " + response.todayVisit!!.temp.toString()
+        mBinding!!.textViewPatientBP.text = "Blood Pressure: " + response.todayVisit!!.bp.toString()
+        mBinding!!.textViewWeight.text = "Weight: " + response.todayVisit!!.weight.toString()
+    }
+
+    private fun createSymptomsList(response: PatientProfileDetails) {
+
+        for (symptomName in response.todayVisit!!.symptoms!!) {
             var symptom = Symptoms()
             symptom.name = symptomName
             symptom.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.SYMPTOMS
@@ -146,8 +170,20 @@ class PatientVisitInfoFragment : BaseFragment<FragmentPatientVisitInfoBinding, P
         addMedicine.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_MEDICINE
         visitList.add(addMedicine)
 
-        return visitList
 
+        var precautionHeading = MedicineDescription()
+        precautionHeading.name = Constants.PRECAUTIONS
+        precautionHeading.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.HEAD_PRECAUTION
+        visitList.add(precautionHeading)
+
+        visitList.addAll(precautionsList)
+
+        var addPrecautionMedicine = MedicineDescription()
+        addPrecautionMedicine.name = Constants.ADD_PRECAUTIONS
+        addPrecautionMedicine.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.ADD_PRECAUTION
+        visitList.add(addPrecautionMedicine)
+
+        return visitList
     }
 
     override fun startMedicineListActivity(ojb: CommonObjectSymptomsDescription) {
@@ -188,4 +224,33 @@ class PatientVisitInfoFragment : BaseFragment<FragmentPatientVisitInfoBinding, P
         symptomsList.remove(symptoms as CommonObjectSymptomsDescription)
         refreshList()
     }
+
+    override fun removePrecautions(precaution: Precaution) {
+        precautionsList.remove(precaution)
+        refreshList()
+    }
+
+    fun showPrecautionDialog() {
+        val dialog = Dialog(activity)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.activity_precautions)
+        val editText = dialog.findViewById(R.id.editTextPrecaution) as EditText
+        val yesBtn = dialog.findViewById(R.id.buttonSelect) as Button
+        yesBtn.setOnClickListener {
+            var text = editText.text.toString()
+            var precaution = Precaution()
+            precaution.name = text
+            precaution.objectType = CommonObjectSymptomsDescription.OBJECT_TYPE.PRECAUTION
+            precautionsList.add(precaution)
+            refreshList()
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
+    override fun addPrecaution() {
+        showPrecautionDialog()
+    }
+
 }
