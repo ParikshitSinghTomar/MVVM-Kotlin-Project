@@ -38,9 +38,17 @@ class RoomDBHelper : IRoomDBHelper {
         return appDatabase.getUserDao().findUser2().get(0);
     }
 
-    override fun savePatient(patientEntityList: List<Patient>) {
+    override fun savePatients(patientEntityList: List<Patient>) {
         try {
             appDatabase.getPatientDao().insert(patientEntityList)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    override fun savePatient(patientEntity: Patient) {
+        try {
+            appDatabase.getPatientDao().insertPatient(patientEntity)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -61,5 +69,14 @@ class RoomDBHelper : IRoomDBHelper {
             e.printStackTrace()
         }
         return ArrayList<Medicine>()
+    }
+
+    override fun getPatientListFromDB(): List<Patient> {
+        try {
+            return appDatabase.getPatientDao().getPatientList()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return ArrayList<Patient>()
     }
 }

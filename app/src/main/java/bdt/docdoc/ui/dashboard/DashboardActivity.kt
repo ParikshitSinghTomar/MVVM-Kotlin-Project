@@ -1,20 +1,20 @@
 package bdt.docdoc.ui.dashboard
 
+import android.annotation.SuppressLint
+import android.app.Dialog
+import android.app.DialogFragment
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.LinearLayoutManager
-import android.view.Menu
-import android.view.MenuItem
-import android.view.MotionEvent
-import android.view.View
-import android.widget.SearchView
-import android.widget.Toast
+import android.view.*
+import android.widget.*
 import bdt.docdoc.BR
 import bdt.docdoc.R
 import bdt.docdoc.common.BaseActivity
@@ -35,6 +35,7 @@ import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.app_bar_dashboard.*
 import kotlinx.android.synthetic.main.content_dashboard.*
 import javax.inject.Inject
+import kotlin.random.Random
 
 /**
  * Created by parikshit on 13/7/19.
@@ -82,9 +83,6 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Are you want to sure to print this prescription.", Snackbar.LENGTH_LONG)
-                    .setAction("No", {
-
-                    })
                     .setAction("Yes", {
                         showPrescriptionScreen()
                     }).show()
@@ -112,10 +110,15 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
 
     }
 
-    private fun showAddPatientDialog() {
-        Toast.makeText(baseContext,"You can add patient here.",Toast.LENGTH_SHORT).show()
+
+    private fun captureImage() {
 
     }
+
+    private fun isNetworkConnected(): Boolean {
+        return false
+    }
+
 
     private fun showPrescriptionScreen() {
 
@@ -308,4 +311,98 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
     private fun loadPatientDetails(patient: Patient) {
         mDashboardViewModel.loadPatientDetails(patient)
     }
+
+    private fun showAddPatientDialog() {
+
+//        val manager=fragmentManager
+//        AddPatientDialogFragment().newInstance().show(manager,"AddPatientDialog")
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.dialog_add_patient)
+        val imageProfile = dialog.findViewById(R.id.imageViewProfile) as ImageView
+        val imageCapture = dialog.findViewById(R.id.imageViewCaptureImage) as ImageView
+        val imageClose = dialog.findViewById(R.id.imageClose) as ImageView
+        imageClose.setOnClickListener({
+            dialog.dismiss()
+        })
+
+        val editName = dialog.findViewById(R.id.editTextPatientName) as EditText
+        val editPhoneNo = dialog.findViewById(R.id.editTextCity) as EditText
+        val editCity = dialog.findViewById(R.id.editTextPhoneNo) as EditText
+        val editAge = dialog.findViewById(R.id.editTextAge) as EditText
+        val editTemp = dialog.findViewById(R.id.editTextTemp) as EditText
+        val editWeight = dialog.findViewById(R.id.editTextWeight) as EditText
+
+        val yesAdd = dialog.findViewById(R.id.buttonAdd) as Button
+        imageProfile.setOnClickListener({
+            captureImage()
+        })
+        imageCapture.setOnClickListener({
+            captureImage()
+        })
+        yesAdd.setOnClickListener {
+            var textName = editName.text.toString()
+            var textPhoneNo = editPhoneNo.text.toString()
+            var textCity = editCity.text.toString()
+            var textAge = editAge.text.toString()
+            var textTemp = editTemp.text.toString()
+            var textWeight = editWeight.text.toString()
+
+            if (textName.isNullOrEmpty()) {
+                editName.hint = "Please enter valid text."
+                editName.setHintTextColor(ContextCompat.getColor(baseContext, R.color.red))
+                return@setOnClickListener
+            } else if (textPhoneNo.isNullOrEmpty()) {
+                editPhoneNo.hint = "Please enter valid text."
+                editPhoneNo.setHintTextColor(ContextCompat.getColor(baseContext, R.color.red))
+                return@setOnClickListener
+            } else if (textCity.isNullOrEmpty()) {
+                editCity.hint = "Please enter valid text."
+                editCity.setHintTextColor(ContextCompat.getColor(baseContext, R.color.red))
+                return@setOnClickListener
+            } else if (textAge.isNullOrEmpty()) {
+                editAge.hint = "Please enter valid text."
+                editAge.setHintTextColor(ContextCompat.getColor(baseContext, R.color.red))
+                return@setOnClickListener
+            } else if (textPhoneNo.isNullOrEmpty()) {
+                editPhoneNo.hint = "Please enter valid text."
+                editPhoneNo.setHintTextColor(ContextCompat.getColor(baseContext, R.color.red))
+                return@setOnClickListener
+            } else if (textTemp.isNullOrEmpty()) {
+                editTemp.hint = "Please enter valid text."
+                editTemp.setHintTextColor(ContextCompat.getColor(baseContext, R.color.red))
+                return@setOnClickListener
+            } else if (textWeight.isNullOrEmpty()) {
+                editWeight.hint = "Please enter valid text."
+                editWeight.setHintTextColor(ContextCompat.getColor(baseContext, R.color.red))
+                return@setOnClickListener
+            }
+            if (isNetworkConnected()) {
+
+            } else {
+                var randomeInt = (java.util.Random().nextInt(Integer.SIZE - 1))
+                var visitID = (mDashboardViewModel.getDocID().toString() + randomeInt.toString()).toInt()
+                var patient = Patient(visitID, -1, textName,
+                        textCity, "", "demo@demo.demo", textAge.toInt(), textPhoneNo, 0, false)
+                mDashboardViewModel.addPatient(patient)
+                patientEntityList.add(patient)
+                addPatientDB(patient)
+                addPatientAdapter(patient)
+                mAdapter!!.notifyDataSetChanged()
+            }
+
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
+    private fun addPatientDB(patient: Patient) {
+        mDashboardViewModel.addPatient(patient)
+    }
+
+    private fun addPatientAdapter(patient: Patient) {
+        mAdapter!!.addPatient(patient)
+    }
+
 }

@@ -1,9 +1,6 @@
 package bdt.docdoc.repo.remote.rest_api_helper
 
-import bdt.docdoc.repo.remote.model.request.PatientListRequest
-import bdt.docdoc.repo.remote.model.request.PatientTodayVisitDetailRequest
-import bdt.docdoc.repo.remote.model.request.UserRegistrationRequest
-import bdt.docdoc.repo.remote.model.request.UserRequest
+import bdt.docdoc.repo.remote.model.request.*
 import bdt.docdoc.repo.remote.model.response.*
 
 /**
@@ -21,4 +18,8 @@ interface IRestAPIHelper {
     fun getPatientTodayVisitDetail(patientTodayVisitDetailRequest: PatientTodayVisitDetailRequest): PatientProfileDetails
 
     fun getMedicineList(): MedicineListResponse
+
+    fun savePatientApiCall(request: SavePatientRequest)
+
+    fun verifyPatientPhoneNo(request: SavePatientRequest)
 }

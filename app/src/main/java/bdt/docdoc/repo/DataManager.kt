@@ -68,8 +68,12 @@ class DataManager : IDataManager {
         return iRestAPIHelper.patientService(request)
     }
 
-    override fun savePatient(patientEntityList: List<Patient>) {
-        iRoomDBHelper.savePatient(patientEntityList)
+    override fun savePatients(patientEntityList: List<Patient>) {
+        iRoomDBHelper.savePatients(patientEntityList)
+    }
+
+    override fun savePatient(patientEntity: Patient) {
+        iRoomDBHelper.savePatient(patientEntity)
     }
 
     override fun getPatientTodayVisitDetail(patientTodayVisitDetailRequest: PatientTodayVisitDetailRequest): PatientProfileDetails {
@@ -92,5 +96,8 @@ class DataManager : IDataManager {
         return iRestAPIHelper.getMedicineList()
     }
 
+    override fun getPatientListFromDB(): List<Patient> {
+        return iRoomDBHelper.getPatientListFromDB()
+    }
 
 }

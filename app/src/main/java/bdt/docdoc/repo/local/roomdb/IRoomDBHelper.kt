@@ -16,10 +16,13 @@ interface IRoomDBHelper {
 
     fun getCurrentUser(): User
 
-    fun savePatient(patientEntityList: List<Patient>)
+    fun savePatients(patientEntityList: List<Patient>)
+    fun savePatient(patientEntity: Patient)
 
     fun saveMedicineList(medicineEntityList: ArrayList<Medicine>)
 
     fun getDBMedicineList(): List<Medicine>
+
+    fun getPatientListFromDB(): List<Patient>
 
 }

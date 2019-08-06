@@ -42,6 +42,11 @@ class PatientAdapter : RecyclerView.Adapter<PatientAdapter.ViewHolder>, Filterab
         this.selectPatientPosition = this.filterPatientList.size - 1
     }
 
+    fun addPatient(patient: Patient) {
+        patientList.add(patient)
+        filterPatientList.add(patient)
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_patient_list, parent, false))
@@ -142,4 +147,6 @@ class PatientAdapter : RecyclerView.Adapter<PatientAdapter.ViewHolder>, Filterab
     interface PatientItemClickListener {
         fun onItemClicked(patient: Patient);
     }
+
+
 }

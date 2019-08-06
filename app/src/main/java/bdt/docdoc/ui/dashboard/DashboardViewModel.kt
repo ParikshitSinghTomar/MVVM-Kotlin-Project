@@ -6,6 +6,7 @@ import bdt.docdoc.repo.IDataManager
 import bdt.docdoc.repo.local.roomdb.entity.Patient
 import bdt.docdoc.repo.remote.model.request.PatientListRequest
 import bdt.docdoc.repo.remote.model.request.PatientTodayVisitDetailRequest
+import bdt.docdoc.repo.remote.model.request.SavePatientRequest
 import bdt.docdoc.repo.remote.model.response.PatientListResponse
 import bdt.docdoc.repo.remote.model.response.PatientResponse
 import bdt.docdoc.ui.dashboard.p_visit_info.IPatientVisitInfoNavigator
@@ -24,19 +25,18 @@ class DashboardViewModel : BaseViewModel {
     }
 
     fun loadPatientList() {
-
         viewModelScope.launch(Dispatchers.IO) {
             var user = iDataManager.getCurrentUser()
             var request = PatientListRequest()
             request.docID = user.id
             request.token = user.email
             var response = iDataManager.patientService(request)
-            isValidResponse(response)
+            saveResponse(response)
         }
 
     }
 
-    private fun isValidResponse(response: PatientListResponse) {
+    private fun saveResponse(response: PatientListResponse) {
         viewModelScope.launch(Dispatchers.Main) {
             if (response.errors.isEmpty()) {
                 if (response.status && response.data.size > 0) {
@@ -52,9 +52,7 @@ class DashboardViewModel : BaseViewModel {
 
     private fun savePatientList(patientList: List<PatientResponse>) {
         viewModelScope.launch(Dispatchers.IO) {
-
             var patientEntityList = arrayListOf<Patient>()
-
             for (patient in patientList) {
                 var patientEntity = Patient(patient.id,
                         patient.patientID,
@@ -67,13 +65,13 @@ class DashboardViewModel : BaseViewModel {
                         patient.visit_count,
                         patient.visit_done)
                 patientEntityList.add(patientEntity)
-
             }
-//            iDataManager.savePatient(patientEntityList)
-
+            iDataManager.savePatients(patientEntityList)
+            var patientList = iDataManager.getPatientListFromDB() as ArrayList<Patient>
             viewModelScope.launch(Dispatchers.Main) {
-                (getNavigator() as IDashboardNavigator).showPatientList(patientEntityList)
+                (getNavigator() as IDashboardNavigator).showPatientList(patientList)
             }
+
 
         }
     }
@@ -95,6 +93,27 @@ class DashboardViewModel : BaseViewModel {
                 }
             }
         }
+    }
+
+    fun addPatient(patient: Patient) {
+
+        viewModelScope.launch(Dispatchers.IO) {
+            //            iDataManager.savePatient(patient)
+            var request = SavePatientRequest()
+            request.name = patient.name
+            request.phone_no = patient.mobileNo
+            request.age = patient.age
+            request.bp = patient.bp
+            request.name = patient.name
+            request.name = patient.name
+            request.name = patient.name
+
+            iDataManager.savePatientApiCall()
+        }
+    }
+
+    fun getDocID(): Int {
+        return 123456
     }
 
 
